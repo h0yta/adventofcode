@@ -1,0 +1,19 @@
+{
+  "name": "adventofcode",
+  "version": "1.0.0",
+  "description": "Solutions for http://adventofcode.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h0yta/adventofcode.git"
+  },
+  "author": "h0yta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/h0yta/adventofcode/issues"
+  },
+  "homepage": "https://github.com/h0yta/adventofcode#readme"
+}
