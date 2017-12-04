@@ -1,17 +1,36 @@
 const utils = require('../util/fileUtil');
 
-exports.run = function () {
+const runOne = function () {
   let input = utils.getInput('day04', '\n');
   let uniqueInput = input.filter(line => {
-    let uniqueWords = [];
-    line.split(' ').forEach(word => {
-      if (uniqueWords.indexOf(word.trim()) < 0) {
-        uniqueWords.push(word);
-      }
-    });
+    let words = line.split(' ')
+      .map(word => word.trim())
+    let uniqueWords = words.filter(function (value, index, self) {
+      return self.indexOf(value) === index;
+    })
 
-    return line.split(' ').length === uniqueWords.length;
+    return words.length === uniqueWords.length;
   });
 
-  console.log('Valid passphrases', uniqueInput.length);
+  console.log('Valid passphrases (first)', uniqueInput.length);
+}
+
+const runTwo = function () {
+  let input = utils.getInput('day04', '\n');
+  let uniqueInput = input.filter(line => {
+    let words = line.split(' ')
+      .map(word => word.trim().split('').sort().join(''));
+    let uniqueWords = words.filter(function (value, index, self) {
+      return self.indexOf(value) === index;
+    })
+
+    return words.length === uniqueWords.length;
+  });
+
+  console.log('Valid passphrases (second)', uniqueInput.length);
+}
+
+exports.run = function () {
+  runOne();
+  runTwo();
 }
