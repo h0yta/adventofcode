@@ -1,46 +1,33 @@
 const utils = require('../util/fileUtil');
 
-const runOne = function () {
+const runOne = function (input) {
   let sum = 0;
-  let array = utils.getInput('day01', '');
-  for (i = 0; i < array.length; i++) {
-    let compareOne = (i + 1) % array.length;
-    if (array[i] === array[compareOne]) {
-      sumOne += parseInt(array[i]);
-    }
-
-    let compareTwo = (i + (array.length / 2)) % array.length;
-    if (array[i] === array[compareTwo]) {
-      sumTwo += parseInt(array[i]);
+  for (i = 0; i < input.length; i++) {
+    let compare = (i + 1) % input.length;
+    if (input[i] === input[compare]) {
+      sum += parseInt(input[i]);
     }
   }
 
-  console.log('sum', sum);
   return sum;
 }
 
-const runTwo = function () {
+const runTwo = function (input) {
   let sum = 0;
-  let array = utils.getInput('day01', '');
-  for (i = 0; i < array.length; i++) {
-    let compareOne = (i + 1) % array.length;
-    if (array[i] === array[compareOne]) {
-      sumOne += parseInt(array[i]);
-    }
-
-    let compareTwo = (i + (array.length / 2)) % array.length;
-    if (array[i] === array[compareTwo]) {
-      sumTwo += parseInt(array[i]);
+  for (i = 0; i < input.length; i++) {
+    let compare = (i + (input.length / 2)) % input.length;
+    if (input[i] === input[compare]) {
+      sum += parseInt(input[i]);
     }
   }
 
-  console.log('sum', sum);
   return sum;
 }
 
 exports.run = function () {
-  runOne();
-  runTwo();
+  let input = utils.getInput('day01', '');
+  console.log('Answer to (first) captcha', runOne(input));
+  console.log('Answer to (second) captcha', runTwo(input));
 }
 
 exports.runOne = runOne;

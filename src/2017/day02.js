@@ -1,49 +1,40 @@
 const utils = require('../util/fileUtil');
 
-const runOne = function () {
+const runOne = function (input) {
   let sum = 0;
-  var lines = utils.getInput('day02', '\n');
-  lines.forEach(line => {
-    let max = 0;
-    let min = Number.MAX_SAFE_INTEGER;
-    line.split('\t').forEach(function (element) {
-      let parsedNumber = parseInt(element);
-      if (parsedNumber > max) {
-        max = parsedNumber;
-      }
-
-      if (parsedNumber < min) {
-        min = parsedNumber;
-      }
-    });
+  input.forEach(line => {
+    let max = line.split('\t')
+      .map(x => parseInt(x))
+      .reduce((prev, curr) => curr > prev ? curr : prev);
+    let min = line.split('\t')
+      .map(x => parseInt(x))
+      .reduce((prev, curr) => curr < prev ? curr : prev);
 
     sum += (max - min);
   });
 
-  console.log('sum', sum);
   return sum;
 }
 
-const runTwo = function () {
+const runTwo = function (input) {
   let sum = 0;
-  var lines = utils.getInput('day02', '\n');
-  lines.forEach(line => {
-    line.split('\t').forEach(num1 => {
-      line.split('\t').forEach(num2 => {
-        if (parseInt(num1) % parseInt(num2) === 0 && num1 !== num2) {
-          sum += (parseInt(num1) / parseInt(num2));
+  input.forEach(line => {
+    line.split('\t').map(x => parseInt(x)).forEach(num1 => {
+      line.split('\t').map(x => parseInt(x)).forEach(num2 => {
+        if (num1 % num2 === 0 && num1 !== num2) {
+          sum += num1 / num2;
         }
       });
     });
   });
 
-  console.log('sum', sum);
   return sum;
 }
 
 exports.run = function () {
-  runOne();
-  runTwo();
+  let input = utils.getInput('day02', '\n');
+  console.log('Corruption (first) checksum', runOne(input));
+  console.log('Corruption (second) checksum', runTwo(input));
 }
 
 exports.runOne = runOne;
