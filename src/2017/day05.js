@@ -1,6 +1,6 @@
 const utils = require("../util/fileUtil");
 
-const runOne = function(input) {
+const runOne = function (input) {
   let jumps = 0;
   let index = 0;
   while (index < input.length) {
@@ -10,11 +10,10 @@ const runOne = function(input) {
     jumps++;
   }
 
-  console.log("Number of jumps to quit maze (first) is", jumps);
   return jumps;
 };
 
-const runTwo = function(input) {
+const runTwo = function (input) {
   let jumps = 0;
   let index = 0;
   while (index < input.length && index > -1) {
@@ -27,15 +26,14 @@ const runTwo = function(input) {
     index += instruction;
     jumps++;
   }
-  
-  console.log("Number of jumps to quit maze (second) is", jumps);
+
   return jumps;
 };
 
-exports.run = function() {
+exports.run = function () {
   let input = utils.getInput("day05", "\n");
-  runOne(input);
-  runTwo(input);
+  console.log("Number of jumps to quit maze (first) is", runOne(input));
+  console.log("Number of jumps to quit maze (second) is", runTwo(input));
 };
 
 exports.runOne = runOne;

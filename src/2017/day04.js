@@ -1,7 +1,6 @@
 const utils = require('../util/fileUtil');
 
-const runOne = function () {
-  let input = utils.getInput('day04', '\n');
+const runOne = function (input) {
   let uniqueInput = input.filter(line => {
     let words = line.split(' ')
       .map(word => word.trim())
@@ -12,11 +11,10 @@ const runOne = function () {
     return words.length === uniqueWords.length;
   });
 
-  console.log('Valid passphrases (first)', uniqueInput.length);
+  return uniqueInput.length;
 }
 
-const runTwo = function () {
-  let input = utils.getInput('day04', '\n');
+const runTwo = function (input) {
   let uniqueInput = input.filter(line => {
     let words = line.split(' ')
       .map(word => word.trim().split('').sort().join(''));
@@ -27,10 +25,14 @@ const runTwo = function () {
     return words.length === uniqueWords.length;
   });
 
-  console.log('Valid passphrases (second)', uniqueInput.length);
+  return uniqueInput.length;
 }
 
 exports.run = function () {
-  runOne();
-  runTwo();
+  let input = utils.getInput('day04', '\n');
+  console.log('Valid passphrases (first)', runOne(input));
+  console.log('Valid passphrases (second)', runTwo(input));
 }
+
+exports.runOne = runOne;
+exports.runTwo = runTwo;
