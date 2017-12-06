@@ -7,7 +7,7 @@ describe('Day 06', function () {
 
     it('should return 5', function () {
       let input = [0, 2, 7, 0];
-      assert.equal(sut.runOne(input).loops, 5);
+      assert.equal(sut.runOne(input), 5);
     });
 
   });
