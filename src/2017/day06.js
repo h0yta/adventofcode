@@ -1,7 +1,6 @@
 const utils = require("../util/fileUtil");
 const runOne = function (input) {
   let oldResults = [];
-  let counter = 0;
 
   while (noDup(oldResults, input)) {
     oldResults.push(input.join(''));
@@ -10,16 +9,13 @@ const runOne = function (input) {
     let maxIndex = input.indexOf(max);
     input[maxIndex] = 0;
     runAroundAndAddOne(input, max, ++maxIndex);
-
-    counter++;
   }
 
-  return counter;
+  return oldResults.length;
 };
 
 const runTwo = function (input) {
   let oldResults = [];
-  let counter = 0;
 
   while (noDup(oldResults, input)) {
     oldResults.push(input.join(''));
@@ -28,11 +24,9 @@ const runTwo = function (input) {
     let maxIndex = input.indexOf(max);
     input[maxIndex] = 0;
     runAroundAndAddOne(input, max, ++maxIndex);
-
-    counter++;
   }
 
-  return counter - oldResults.indexOf(input.join(''));
+  return oldResults.length - oldResults.indexOf(input.join(''));
 };
 
 const noDup = function (oldResults, input) {
@@ -44,17 +38,12 @@ const runAroundAndAddOne = function (input, value, index) {
     return;
   }
 
-  if (index < input.length) {
-    input[index]++;
-    runAroundAndAddOne(input, --value, ++index);
-  } else {
-    runAroundAndAddOne(input, value, 0);
-  }
+  input[index % input.length]++;
+  runAroundAndAddOne(input, --value, ++index);
 }
 
 exports.run = function () {
-  let input = utils.getInput("day06", "\t")
-    .map(x => parseInt(x));
+  let input = utils.getInput("day06", "\t").map(x => parseInt(x));
   console.log("Number of (first) redistribution cycles", runOne(input));
   console.log("Number of (first) redistribution cycles", runTwo(input));
 };
