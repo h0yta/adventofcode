@@ -1,17 +1,54 @@
 const utils = require("../util/fileUtil");
+const runOne = function(input) {
+  let oldResults = [];
+  let counter = 0;
 
-const runOne = function (input) {
-  return 0;
+  while (noDup(oldResults, input)) {
+    oldResults.push(input.join(''));
+
+    let max = input.reduce((prev, curr) => curr > prev ? curr : prev);
+    let maxIndex = input.indexOf(max);
+    input[maxIndex] = 0;
+    runAroundAndAddOne(input, max, ++maxIndex);
+
+    counter++;
+  }
+  
+  return {
+    'loops': counter,
+    'state': input.join('')
+  }
 };
 
-const runTwo = function (input) {
-  return 0;
+const runTwo = function(input) {
+  let firstResult = runOne(input);
+  let secondResult = runOne(firstResult.state.split(''));
+
+  return secondResult.loops;
 };
 
-exports.run = function () {
-  let input = utils.getInput("day06", "\n");
-  console.log("Text", runOne(input));
-  console.log("Text", runTwo(input));
+const noDup = function(oldResults, input) {
+  return oldResults.indexOf(input.join('')) === -1;
+}
+
+const runAroundAndAddOne = function(input, value, index) {
+  if (value === 0) {
+    return;
+  }
+
+  if (index < input.length) {
+    input[index]++;
+    runAroundAndAddOne(input, --value, ++index);
+  } else {
+    runAroundAndAddOne(input, value, 0);
+  }
+}
+
+exports.run = function() {
+  let input = utils.getInput("day06", "\t")
+    .map(x => parseInt(x));
+  console.log("Number of (first) redistribution cycles", runOne(input).loops);
+  console.log("Number of (first) redistribution cycles", runTwo(input));
 };
 
 exports.runOne = runOne;

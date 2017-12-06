@@ -7,16 +7,16 @@ describe('Day 06', function () {
 
     it('should return 5', function () {
       let input = [0, 2, 7, 0];
-      assert.equal(sut.runOne(input), 5);
+      assert.equal(sut.runOne(input).loops, 5);
     });
 
   });
 
   describe('secondRun ', function () {
 
-    it('should return 0', function () {
-      let input = [];
-      assert.equal(sut.runTwo(input), 0);
+    it('should return 4', function () {
+      let input = [2, 4, 1, 2];
+      assert.equal(sut.runTwo(input), 4);
     });
 
   });
