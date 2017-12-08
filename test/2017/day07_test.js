@@ -2,7 +2,7 @@ const sut = require('../../src/2017/day07');
 const fs = require('fs');
 const assert = require('assert');
 
-describe('Day 06', function () {
+describe('Day 07', function () {
 
   describe('firstRun', function () {
     let testdata = fs.readFileSync('./test/data/201707', 'utf8').split('\n');
