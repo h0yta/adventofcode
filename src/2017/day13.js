@@ -4,7 +4,7 @@ const runOne = function (input) {
   let layers = input.map(parseRow);
   let severity = 0;
   layers.forEach(layer => {
-    if ((layer.layer) % ((layer.length - 1) * 2) === 0) {
+    if (layer.layer % ((layer.length - 1) * 2) === 0) {
       severity += layer.layer * layer.length;
     }
   });
