@@ -8,16 +8,16 @@ describe('Day 13', function () {
     let testdata = fs.readFileSync('./test/data/201713', 'utf8').split('\n');
 
     it('should return 24', function () {
-      assert.equal(sut.runOne(testdata), 24);
+      assert.equal(sut.runOne(testdata, 0), 24);
     });
 
   });
 
   describe('secondRun ', function () {
-    it('should return 2', function () {
+    it('should return 10', function () {
       let testdata = fs.readFileSync('./test/data/201713', 'utf8').split('\n');
 
-      assert.equal(sut.runTwo(testdata), 2);
+      assert.equal(sut.runTwo(testdata), 10);
     });
 
   });
