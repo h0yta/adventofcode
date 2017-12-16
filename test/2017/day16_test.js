@@ -7,7 +7,7 @@ describe('Day 16', function () {
   describe('firstRun', function () {
 
     it('should return \'baedc\'', function () {
-      let testdata = fs.readFileSync('./test/data/201716', 'utf8').split(',');
+      let testdata = fs.readFileSync('./test/data/201716-1', 'utf8').split(',');
 
       assert.equal(sut.runOne('abcde', testdata), 'baedc');
     });
@@ -16,9 +16,11 @@ describe('Day 16', function () {
 
   describe('secondRun ', function () {
 
-    xit('should return 10', function () {
-      let testdate = '';
-      assert.equal(sut.runTwo(testdata), 10);
+    // Takes to long
+    xit('should return pogbjfihclkemadn', function () {
+      let testdata = fs.readFileSync('./test/data/201716-2', 'utf8').split(',');
+
+      assert.equal(sut.runTwo('pkgnhomelfdibjac', testdata, 1000000000), 'pogbjfihclkemadn');
     });
 
   });

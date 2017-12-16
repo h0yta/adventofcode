@@ -6,27 +6,27 @@ const runOne = function (line, input) {
     line = spin(arg, line);
     line = exchange(arg, line);
     line = partner(arg, line);
-  })
+  });
 
   return line.join('');
 };
 
 const runTwo = function (line, input, dances) {
   line = line.split('');
-  let start = line.join('');
+  let seen = [];
   for (i = 0; i < dances; i++) {
     input.forEach(arg => {
       line = spin(arg, line);
       line = exchange(arg, line);
       line = partner(arg, line);
-    })
+    });
 
-    if (line.join('') === start) {
-      dances = dances % (i + 1);
-      i = 0;
+    if (seen.indexOf(line.join('')) === 0) {
+      return seen[(dances % (i + 1))];
     }
+
+    seen.push(line.join(''));
   }
-  return line.join('');
 };
 
 const spin = function (arg, line) {
