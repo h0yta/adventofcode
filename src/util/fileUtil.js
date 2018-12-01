@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-exports.getInput = function (filename, splitter) {
-  let file = fs.readFileSync('./data/' + filename, 'utf8');
+exports.getInput = function (year, filename, splitter) {
+  let file = fs.readFileSync('./data/' + year + '/' + filename, 'utf8');
   return file.split(splitter);
 }
 

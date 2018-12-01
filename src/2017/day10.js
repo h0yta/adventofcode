@@ -42,9 +42,9 @@ const rotateBackward = function (arr, no) {
 }
 
 exports.run = function () {
-  let input1 = utils.getInput('day10', '\,').map(x => parseInt(x));
+  let input1 = utils.getInput('2017', 'day10', '\,').map(x => parseInt(x));
   console.log("Control (first) sum is", runOne(256, input1));
-  let input2 = utils.getInput('day10', '').join('');
+  let input2 = utils.getInput('2017', 'day10', '').join('');
   console.log("Control (first) sum is", runTwo(input2));
 };
 

@@ -9,7 +9,7 @@ const runTwo = function (input) {
 };
 
 exports.run = function () {
-  let input = utils.getInput('day14', '').join('');
+  let input = utils.getInput('2017', 'day14', '').join('');
   console.log("Number of programs (first)", runOne(input));
   console.log("Number of programs (second)", runTwo(input));
 };

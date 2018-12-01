@@ -31,7 +31,7 @@ const runTwo = function (input) {
 };
 
 exports.run = function () {
-  let input = utils.getInput("day05", "\n");
+  let input = utils.getInput('2017', "day05", "\n");
   console.log("Number of jumps to quit maze (first) is", runOne(input));
   console.log("Number of jumps to quit maze (second) is", runTwo(input));
 };

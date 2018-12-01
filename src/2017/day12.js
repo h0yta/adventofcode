@@ -55,7 +55,7 @@ const parseRow = function (row) {
 }
 
 exports.run = function () {
-  let input = utils.getInput('day12', '\n');
+  let input = utils.getInput('2017', 'day12', '\n');
   console.log("Number of programs (first)", runOne(input));
   console.log("Number of programs (second)", runTwo(input));
 };

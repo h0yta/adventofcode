@@ -32,7 +32,7 @@ const runTwo = function (input) {
 }
 
 exports.run = function () {
-  let input = utils.getInput('day02', '\n');
+  let input = utils.getInput('2017', 'day02', '\n');
   console.log('Corruption (first) checksum', runOne(input));
   console.log('Corruption (second) checksum', runTwo(input));
 }

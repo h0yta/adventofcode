@@ -57,7 +57,7 @@ const traverse = function (node) {
 }
 
 exports.run = function () {
-  let input = utils.getInput("day07", "\n");
+  let input = utils.getInput('2017', "day07", "\n");
 
   console.log("Bottom program (first) is", runOne(input));
   console.log("Bottom program (second) is", runTwo(input));

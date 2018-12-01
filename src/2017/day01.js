@@ -25,7 +25,7 @@ const runTwo = function (input) {
 }
 
 exports.run = function () {
-  let input = utils.getInput('day01', '');
+  let input = utils.getInput('2017', 'day01', '');
   console.log('Answer to (first) captcha', runOne(input));
   console.log('Answer to (second) captcha', runTwo(input));
 }

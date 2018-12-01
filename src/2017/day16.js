@@ -61,7 +61,7 @@ const partner = function (arg, line) {
 }
 
 exports.run = function () {
-  let input = utils.getInput('day16', ',');
+  let input = utils.getInput('2017', 'day16', ',');
 
   console.log("Outpur after 1 dance (first)", runOne('abcdefghijklmnop', input));
   console.log("Outpur after 1000000000 dance (second)", runTwo('pkgnhomelfdibjac', input, 1000000000));

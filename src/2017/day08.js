@@ -10,14 +10,14 @@ const runOne = function (input) {
 
     if (eval(results, parts[4], parts[5], parseInt(parts[6]))) {
       if (parts[1] === 'inc') {
-          results[parts[0]] += parseInt(parts[2]);
+        results[parts[0]] += parseInt(parts[2]);
       } else {
-          results[parts[0]] -= parseInt(parts[2]);
+        results[parts[0]] -= parseInt(parts[2]);
       }
     }
   });
 
-  return Math.max.apply( null, 
+  return Math.max.apply(null,
     Object.keys(results).map(key => results[key]));
 };
 
@@ -33,9 +33,9 @@ const runTwo = function (input) {
 
     if (eval(results, parts[4], parts[5], parseInt(parts[6]))) {
       if (parts[1] === 'inc') {
-          results[parts[0]] += parseInt(parts[2]);
+        results[parts[0]] += parseInt(parts[2]);
       } else {
-          results[parts[0]] -= parseInt(parts[2]);
+        results[parts[0]] -= parseInt(parts[2]);
       }
     }
 
@@ -47,7 +47,7 @@ const runTwo = function (input) {
   return maxValue;
 };
 
-const eval = function(results, argument, operator, value) {
+const eval = function (results, argument, operator, value) {
   if (results[argument] === undefined) {
     results[argument] = 0;
   }
@@ -69,7 +69,7 @@ const eval = function(results, argument, operator, value) {
 }
 
 exports.run = function () {
-  let input = utils.getInput("day08", "\n");
+  let input = utils.getInput('2017', "day08", "\n");
   console.log("Largest (first) register input is", runOne(input));
   console.log("Largest (second) register input is", runTwo(input));
 };

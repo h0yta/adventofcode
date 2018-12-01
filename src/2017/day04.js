@@ -29,7 +29,7 @@ const runTwo = function (input) {
 }
 
 exports.run = function () {
-  let input = utils.getInput('day04', '\n');
+  let input = utils.getInput('2017', 'day04', '\n');
   console.log('Valid passphrases (first)', runOne(input));
   console.log('Valid passphrases (second)', runTwo(input));
 }

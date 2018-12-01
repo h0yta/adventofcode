@@ -43,7 +43,7 @@ const runAroundAndAddOne = function (input, value, index) {
 }
 
 exports.run = function () {
-  let input = utils.getInput("day06", "\t").map(x => parseInt(x));
+  let input = utils.getInput('2017', "day06", "\t").map(x => parseInt(x));
   console.log("Number of (first) redistribution cycles", runOne(input));
   console.log("Number of (first) redistribution cycles", runTwo(input));
 };

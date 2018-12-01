@@ -28,7 +28,7 @@ const runTwo = function (input) {
 };
 
 exports.run = function () {
-  let input = utils.getInput('day13', '\n');
+  let input = utils.getInput('2017', 'day13', '\n');
   console.log("Number of programs (first)", runOne(input));
   console.log("Number of programs (second)", runTwo(input));
 };

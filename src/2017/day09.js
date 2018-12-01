@@ -40,7 +40,7 @@ const go = function (input) {
 }
 
 exports.run = function () {
-  let input = utils.getInput('day09', '');
+  let input = utils.getInput('2017', 'day09', '');
   console.log("Total (first) score is", runOne(input));
   console.log("Total (second) score is", runTwo(input));
 };
