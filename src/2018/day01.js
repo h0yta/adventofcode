@@ -1,19 +1,30 @@
 const utils = require('../util/fileUtil');
 
-const runOne = function (input) {
-  return input.reduce((pre, cur) => parseInt(pre) + parseInt(cur));
+const firstStar = function (input) {
+  return input
+    .map(x => parseInt(x))
+    .reduce((pre, cur) => pre + cur);
 }
 
-const runTwo = function (input) {
-  // TODO Which frequency is reached twice first?
-  return 0;
+let frequences = [];
+let frequence = 0;
+const secondStar = function (input) {
+  for (i = 0; i < input.length; i++) {
+    frequence += parseInt(input[i]);
+    if (frequences.indexOf(frequence) >= 0) {
+      return frequence;
+    }
+    frequences.push(frequence);
+  }
+
+  return secondStar(input);
 }
 
 exports.run = function () {
   let input = utils.getInput('2018', 'day01', '\n');
-  console.log('Answer to (first) captcha', runOne(input));
-  console.log('Answer to (second) captcha', runTwo(input));
+  console.log('Answer for first star', firstStar(input));
+  console.log('Answer for second star', secondStar(input));
 }
 
-exports.runOne = runOne;
-exports.runTwo = runTwo;
+exports.runOne = firstStar;
+exports.runTwo = secondStar;
