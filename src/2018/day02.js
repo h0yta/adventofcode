@@ -2,33 +2,30 @@ const utils = require('../util/fileUtil');
 
 const firstStar = function (input) {
   let exactlyTwice = 0;
-  let exactlyThree = 0;
-  input.forEach(elem => {
-    let occurences = elem
-      .split("")
-      .filter(function (item, pos) {
-        return elem.indexOf(item) === pos;
-      }).map(x => {
-        return parseInt(elem.split(x).length - 1);
-      });
+  let exactlyThrice = 0;
+  input.forEach(id => {
+    let occurences = id
+      .split('')
+      .filter((item, pos) => id.indexOf(item) === pos)
+      .map(item => id.split(item).length - 1);
 
     exactlyTwice += occurences.filter(x => x === 2).length > 0 ? 1 : 0;
-    exactlyThree += occurences.filter(x => x === 3).length > 0 ? 1 : 0;
+    exactlyThrice += occurences.filter(x => x === 3).length > 0 ? 1 : 0;
   });
 
-  return exactlyTwice * exactlyThree;
+  return exactlyTwice * exactlyThrice;
 }
 
 const secondStar = function (input) {
   for (let i = 0; i < input.length - 1; i++) {
-    let arrayI = [...input[i]];
+    let iArray = [...input[i]];
 
     for (let j = i + 1; j < input.length; j++) {
-      let arrayJ = [...input[j]];
-      let diff = arrayI.reduce((p, c, i) => p + (c === arrayJ[i] ? 0 : 1), 0)
+      let jArray = [...input[j]];
+      let diff = iArray.reduce((p, c, i) => p + (c === jArray[i] ? 0 : 1), 0)
 
       if (diff === 1) {
-        return arrayI.filter((c, i) => c === arrayJ[i]).join('');
+        return iArray.filter((c, i) => c === jArray[i]).join('');
       }
     }
   }

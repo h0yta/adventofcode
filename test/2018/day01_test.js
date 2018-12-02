@@ -25,7 +25,6 @@ describe('Day 01', function () {
   describe('secondStar', function () {
 
     beforeEach(function (done) {
-      sut.reset();
       done();
     });
 

@@ -2,27 +2,23 @@ const utils = require('../util/fileUtil');
 
 const firstStar = function (input) {
   return input
-    .map(x => parseInt(x))
+    .map(Number)
     .reduce((pre, cur) => pre + cur);
 }
 
-let frequences = [0];
-let frequence = 0;
 const secondStar = function (input) {
-  for (i = 0; i < input.length; i++) {
-    frequence += parseInt(input[i]);
-    if (frequences.indexOf(frequence) >= 0) {
-      return frequence;
+  let nums = input.map(Number);
+  let seen = [0];
+  let current = 0;
+  while (true) {
+    for (i = 0; i < nums.length; i++) {
+      current += parseInt(nums[i]);
+      if (seen.includes(current)) {
+        return current;
+      }
+      seen.push(current);
     }
-    frequences.push(frequence);
   }
-
-  return secondStar(input);
-}
-
-const reset = function () {
-  frequences = [0];
-  frequence = 0;
 }
 
 exports.run = function () {
@@ -33,4 +29,3 @@ exports.run = function () {
 
 exports.runOne = firstStar;
 exports.runTwo = secondStar;
-exports.reset = reset;
