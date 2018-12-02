@@ -6,7 +6,7 @@ const firstStar = function (input) {
     .reduce((pre, cur) => pre + cur);
 }
 
-let frequences = [];
+let frequences = [0];
 let frequence = 0;
 const secondStar = function (input) {
   for (i = 0; i < input.length; i++) {
@@ -20,6 +20,11 @@ const secondStar = function (input) {
   return secondStar(input);
 }
 
+const reset = function () {
+  frequences = [0];
+  frequence = 0;
+}
+
 exports.run = function () {
   let input = utils.getInput('2018', 'day01', '\n');
   console.log('Answer for first star', firstStar(input));
@@ -28,3 +33,4 @@ exports.run = function () {
 
 exports.runOne = firstStar;
 exports.runTwo = secondStar;
+exports.reset = reset;
