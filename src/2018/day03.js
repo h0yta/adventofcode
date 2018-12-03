@@ -1,7 +1,21 @@
 const utils = require('../util/fileUtil');
 
 const firstStar = function (input) {
-  return 0;
+  let array = {};
+  input.map(parseInput)
+    .forEach(row => {
+      for (let x = row.startX; x <= row.startX + row.lengthX; x++) {
+        for (let y = row.startY; y <= row.startY + row.lengthY; y++) {
+          if (array[x + '#' + y]) {
+            array[x + '#' + y] = array[x + '#' + y] + 1;
+          } else {
+            array[x + '#' + y] = 1;
+          }
+        }
+      }
+    });
+
+  console.log(array);
 }
 
 const secondStar = function (input) {
@@ -16,10 +30,10 @@ const parseInput = function (row) {
     console.log('Found no match for', row);
   } else {
     return {
-      "startX": match[1].trim(),
-      "startY": match[2].trim(),
-      "lengthX": match[3].trim(),
-      "lengthY": match[4].trim()
+      "startX": parseInt(match[1].trim()),
+      "startY": parseInt(match[2].trim()),
+      "lengthX": parseInt(match[3].trim()),
+      "lengthY": parseInt(match[4].trim())
     }
   }
 }
