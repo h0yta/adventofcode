@@ -1,7 +1,7 @@
 const sut = require('../../src/2018/day01');
 const assert = require('assert');
 
-describe('Day 01', function () {
+describe('2018 - Day 01', function () {
 
   describe('firstStar', function () {
 
