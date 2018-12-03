@@ -29,9 +29,11 @@ describe('Day 03', function () {
 
   describe('secondStar', function () {
 
-    it('should return 0', function () {
-      let input = [];
-      assert.equal(sut.runTwo(input), 0);
+    it('should return 3', function () {
+      let input = ['#1 @ 1,3: 4x4',
+        '#2 @ 3,1: 4x4',
+        '#3 @ 5,5: 2x2'];
+      assert.equal(sut.runTwo(input), 3);
     });
 
   });

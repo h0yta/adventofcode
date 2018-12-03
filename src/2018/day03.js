@@ -1,39 +1,64 @@
 const utils = require('../util/fileUtil');
 
 const firstStar = function (input) {
-  let array = {};
+  let grid = {};
   input.map(parseInput)
     .forEach(row => {
-      for (let x = row.startX; x <= row.startX + row.lengthX; x++) {
-        for (let y = row.startY; y <= row.startY + row.lengthY; y++) {
-          if (array[x + '#' + y]) {
-            array[x + '#' + y] = array[x + '#' + y] + 1;
+      for (let x = row.startX; x < row.startX + row.lengthX; x++) {
+        for (let y = row.startY; y < row.startY + row.lengthY; y++) {
+          if (grid[x + '#' + y]) {
+            grid[x + '#' + y] = grid[x + '#' + y] + 1;
           } else {
-            array[x + '#' + y] = 1;
+            grid[x + '#' + y] = 1;
           }
         }
       }
     });
 
-  console.log(array);
+  let overlappingSquares = 0;
+  for (elem in grid) {
+    overlappingSquares += grid[elem] > 1 ? 1 : 0;
+  }
+
+  return overlappingSquares;
 }
 
 const secondStar = function (input) {
-  return 0;
+  let grid = {};
+  let claims = [];
+  let dup = [];
+  input.map(parseInput)
+    .forEach(row => {
+      claims.push(row.claim);
+      for (let x = row.startX; x < row.startX + row.lengthX; x++) {
+        for (let y = row.startY; y < row.startY + row.lengthY; y++) {
+          let posId = x + '#' + y;
+          if (grid[posId]) {
+            dup.push(grid[posId]);
+            dup.push(row.claim);
+          } else {
+            grid[posId] = row.claim;
+          }
+        }
+      }
+    });
+
+  return claims.filter(claim => dup.indexOf(claim) === -1).pop();
 }
 
 const parseInput = function (row) {
   // #1 @ 1,3: 4x4
-  let myChildRegexp = /^#.*\s@\s(.*),(.*):\s(.*)x(.*)$/;
+  let myChildRegexp = /^#(.*)\s@\s(.*),(.*):\s(.*)x(.*)$/;
   let match = myChildRegexp.exec(row);
   if (match === null) {
     console.log('Found no match for', row);
   } else {
     return {
-      "startX": parseInt(match[1].trim()),
-      "startY": parseInt(match[2].trim()),
-      "lengthX": parseInt(match[3].trim()),
-      "lengthY": parseInt(match[4].trim())
+      "claim": parseInt(match[1].trim()),
+      "startX": parseInt(match[2].trim()),
+      "startY": parseInt(match[3].trim()),
+      "lengthX": parseInt(match[4].trim()),
+      "lengthY": parseInt(match[5].trim())
     }
   }
 }
