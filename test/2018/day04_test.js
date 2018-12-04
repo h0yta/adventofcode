@@ -7,7 +7,7 @@ describe('2018 - Day 04', function () {
   describe('firstStar', function () {
     let input = fs.readFileSync('./test/data/201804', 'utf8').split('\n');
 
-    it('should return {}', function () {
+    it('should return 240', function () {
       assert.equal(sut.runOne(input), 240);
     });
 
@@ -16,7 +16,7 @@ describe('2018 - Day 04', function () {
   describe('secondStar', function () {
     let input = fs.readFileSync('./test/data/201804', 'utf8').split('\n');
 
-    it('should return 0', function () {
+    it('should return 4455', function () {
       assert.equal(sut.runTwo(input), 4455);
     });
 
