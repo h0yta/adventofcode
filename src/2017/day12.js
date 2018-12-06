@@ -45,7 +45,7 @@ const traverse = function (programNo, programs) {
 }
 
 const parseRow = function (row) {
-  let regexp = /^(.*)\<\-\>(.*)$/;
+  let regexp = /^(.*)\<\-\>(.*)/;
   let match = regexp.exec(row);
 
   return {

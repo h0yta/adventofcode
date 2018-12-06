@@ -64,7 +64,7 @@ const findGuards = function (input) {
 
 const parseInput = function (row) {
   // [1518-11-02 00:50] wakes up
-  let myChildRegexp = /^\[(.*)\] (.*)$/;
+  let myChildRegexp = /^\[(.*)\] (.*)/;
   let match = myChildRegexp.exec(row);
   if (match === null) {
     console.log('Found no match for', row);

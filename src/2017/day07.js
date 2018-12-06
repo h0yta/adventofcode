@@ -65,10 +65,10 @@ exports.run = function () {
 
 const parseInput = function (input) {
   // ugml (68) -> gyxo, ebii, jptl
-  let myParentRegexp = /^(.*)\((.*)\)\s\-\>\s(.*)$/;
+  let myParentRegexp = /^(.*)\((.*)\)\s\-\>\s(.*)/;
   let match = myParentRegexp.exec(input);
   if (match === null) {
-    let myChildRegexp = /^(.*)\((.*)\)$/;
+    let myChildRegexp = /^(.*)\((.*)\)/;
     let match = myChildRegexp.exec(input);
     if (match === null) {
       console.log('Found no match for', input);
