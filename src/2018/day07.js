@@ -1,11 +1,21 @@
 const utils = require('../util/fileUtil');
 
 const firstStar = function (input) {
-  return 0;
+  
+  input.map(parseInput).forEach(row => {
+    
+  });
 }
 
 const secondStar = function (input) {
   return 0;
+}
+
+const parseInput = function (row) {
+  return {
+    'step': row.split(' ')[1].trim(),
+    'beforeStep': row.split(' ')[7].trim()
+  }
 }
 
 exports.run = function () {
