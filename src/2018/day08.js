@@ -19,18 +19,15 @@ const addChildren = function (input) {
 const addChild = function (input) {
   let noChilds = input[i++];
   let noMetadata = input[i++];
-  let children = [];
-  let metadata = [];
 
+  let children = [];
   for (let c = 0; c < noChilds; c++) {
     children.push(addChild(input));
   }
 
-  metadata = addMetadata(input, noMetadata);
+  let metadata = addMetadata(input, noMetadata);
 
   return {
-    "noChildren": noChilds,
-    "noMetadata": noMetadata,
     "children": children,
     "metadata": metadata
   };
@@ -55,6 +52,13 @@ const sumNode = function (node) {
   return sum;
 }
 
+const secondStar = function (input) {
+  i = 0;
+  let nodes = addChildren(input.map(Number), 0);
+  let sum = sumIndexRefs(nodes);
+  return sum;
+}
+
 const sumIndexRefs = function (nodes) {
   return nodes.reduce((p, c) => p + sumIndexRef(c), 0);
 }
@@ -67,18 +71,11 @@ const sumIndexRef = function (node) {
       if (node.children[c - 1]) {
         return p + sumIndexRef(node.children[c - 1]);
       } else {
-        return p + 0;
+        return p;
       }
     }, 0);
     return k;
   }
-}
-
-const secondStar = function (input) {
-  i = 0;
-  let nodes = addChildren(input.map(Number), 0);
-  let sum = sumIndexRefs(nodes);
-  return sum;
 }
 
 exports.run = function () {
