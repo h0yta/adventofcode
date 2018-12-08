@@ -4,6 +4,10 @@ const assert = require('assert');
 
 describe('2018 - Day 07', function () {
 
+  before(function () {
+    process.env.NODE_ENV = 'test';
+  });
+
   describe('firstStar', function () {
 
     it('should return CABDFE', function () {
@@ -15,9 +19,9 @@ describe('2018 - Day 07', function () {
 
   describe('secondStar', function () {
 
-    it('should return 0', function () {
+    xit('should return 15', function () {
       let input = fs.readFileSync('./test/data/201807', 'utf8').split('\n');
-      assert.equal(sut.runTwo(input), 0);
+      assert.equal(sut.runTwo(input), 15);
     });
 
   });
