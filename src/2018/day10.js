@@ -1,8 +1,9 @@
 const utils = require('../util/fileUtil');
 
-const charHeight = (process.env.NODE_ENV === 'test' ? 7 : 9);
 
 const firstStar = function (input) {
+  const charHeight = (process.env.NODE_ENV === 'test' ? 7 : 9);
+
   let points = input.map(parseInput);
   for (let sec = 0; true; sec++) {
     let yPoints = points.map(p => p.yPosition);
@@ -54,6 +55,8 @@ const printMessage = function (points) {
 }
 
 const secondStar = function (input) {
+  const charHeight = (process.env.NODE_ENV === 'test' ? 7 : 9);
+
   let points = input.map(parseInput);
   for (let sec = 0; true; sec++) {
     let yPoints = points.map(p => p.yPosition);

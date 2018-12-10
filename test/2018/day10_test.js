@@ -10,18 +10,18 @@ describe('2018 - Day 10', function () {
 
   describe('firstStar', function () {
 
-    it('Should spell HI after 3 seconds', function () {
+    it('Should spell HI', function () {
       let input = fs.readFileSync('./test/data/201810', 'utf8').split('\n');
-      assert.equal(sut.runOne(input), 3);
+      assert.equal(sut.runOne(input), '');
     });
 
   });
 
   describe('secondStar', function () {
 
-    it('Should return 0', function () {
+    it('Should return 3', function () {
       let input = fs.readFileSync('./test/data/201810', 'utf8').split('\n');
-      assert.equal(sut.runTwo(input), 0);
+      assert.equal(sut.runTwo(input), 3);
     });
 
   });
