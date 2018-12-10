@@ -4,6 +4,10 @@ const assert = require('assert');
 
 describe('2018 - Day 10', function () {
 
+  before(function () {
+    process.env.NODE_ENV = 'test';
+  });
+
   describe('firstStar', function () {
 
     it('Should spell HI after 3 seconds', function () {
