@@ -15,7 +15,7 @@ describe('2018 - Day 10', function () {
 
   describe('secondStar', function () {
 
-    it('should return 9 players with last marble worth 25', function () {
+    it('Should return 0', function () {
       let input = fs.readFileSync('./test/data/201810', 'utf8').split('\n');
       assert.equal(sut.runTwo(input), 0);
     });

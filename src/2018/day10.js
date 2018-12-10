@@ -1,7 +1,30 @@
 const utils = require('../util/fileUtil');
 
 const firstStar = function (input) {
-  return 0;
+  
+  let points = input.map(parseInput);
+
+  for (let sec = 0; true; sec++) {
+    let yPoints = points.map(p => p.yPosition);
+    let yMin = Math.min(...yPoints);
+    let yMax = Math.max(...yPoints);
+
+    let yDiff = yMax-yMin;
+    
+    if (yDiff === 8) {
+      return sec;
+    }
+
+    movePoints(points); 
+  }
+}
+
+const movePoints = function (points) {
+  return points.forEach(point => {
+    point.xPosition += point.xVelocity;
+    point.yPosition += point.yVelocity;
+    return point;
+  });
 }
 
 const secondStar = function (input) {
@@ -9,14 +32,18 @@ const secondStar = function (input) {
 }
 
 const parseInput = function (row) {
-  //position=< 40724,  50811> velocity=<-4, -5>
+  let [tmpRow, xPosition, yPosition, xVelocity, yVelocity] = row.match(/.*<(.?\d+), (.?\d+)> .*<(.?\d+), (.?\d+)>/);
 
-  return input.match(/(\d+) players; last marble is worth (\d+) points/);
-
+  return {
+    "xPosition": parseInt(xPosition.trim()),
+    "yPosition": parseInt(yPosition.trim()),
+    "xVelocity": parseInt(xVelocity.trim()),
+    "yVelocity": parseInt(yVelocity.trim())
+  }
 }
 
 exports.run = function () {
-  let input = utils.getInput('2018', 'day10', ' ');
+  let input = utils.getInput('2018', 'day10', '\n');
   console.log('Answer for first star', firstStar(input));
   console.log('Answer for second star', secondStar(input));
 }
