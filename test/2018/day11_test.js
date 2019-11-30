@@ -43,7 +43,7 @@ describe('2018 - Day 11', function () {
 
   describe('secondStar', function () {
 
-    it('should return 90,269,16', function () {
+    xit('should return 90,269,16', function () {
       let input = 18;
       assert.equal(sut.runTwo(input), '90,269,16');
     });
