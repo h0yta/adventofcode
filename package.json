@@ -1,10 +1,10 @@
 {
   "name": "adventofcode",
-  "version": "1.0.0",
+  "version": "1.2019.0",
   "description": "Solutions for http://adventofcode.com",
   "main": "index.js",
   "scripts": {
-    "index": "node ./src/index.js",
+    "advent": "node ./src/index.js",
     "test": "mocha --watch"
   },
   "repository": {
