@@ -1,57 +1,133 @@
 const utils = require('../util/fileUtil');
 
-let x;
-let y;
-let path = new Array();
-let encounters = new Array();
 const firstStar = function (input) {
-  path = new Array();
-  input.forEach(wire => {
-    x = 0;
-    y = 0;
-    encounters = new Array();
-    let instructions = wire.split(",");
-    instructions.forEach(instruction => {
-      movePosition(instruction);
-    });
+  let x = 0;
+  let y = 0;
+  let path = new Array();
+  let instructions = input[0].split(",");
+  instructions.map(instruction => {
+    let direction = instruction.substring(0, 1);
+    let distance = instruction.substring(1, instruction.length);
+
+    for (i = 0; i < distance; i++) {
+      switch (direction) {
+        case 'R':
+          x++;
+          break;
+        case 'U':
+          y++;
+          break;
+        case 'L':
+          x--;
+          break;
+        case 'D':
+          y--;
+          break;
+      }
+
+      path[createPositionKey(x, y)] = true;
+    }
+  });
+
+  x = 0;
+  y = 0;
+  let encounters = new Array();
+  instructions = input[1].split(",");
+  instructions.map(instruction => {
+    let direction = instruction.substring(0, 1);
+    let distance = instruction.substring(1, instruction.length);
+
+    for (i = 0; i < distance; i++) {
+      switch (direction) {
+        case 'R':
+          x++;
+          break;
+        case 'U':
+          y++;
+          break;
+        case 'L':
+          x--;
+          break;
+        case 'D':
+          y--;
+          break;
+      }
+
+      if (path[createPositionKey(x, y)]) {
+        let distanceFromOrigo = Math.abs(x) + Math.abs(y);
+        encounters.push(distanceFromOrigo);
+      }
+    }
   });
 
   return Math.min(...encounters)
 }
 
 const secondStar = function (input) {
-  return 0;
-}
+  let x = 0;
+  let y = 0;
+  let step = 0;
+  let path = new Array();
+  let instructions = input[0].split(",");
+  instructions.map(instruction => {
+    let direction = instruction.substring(0, 1);
+    let distance = instruction.substring(1, instruction.length);
 
-const movePosition = (instruction) => {
-  let direction = instruction.substring(0, 1);
-  let distance = instruction.substring(1, instruction.length);
+    for (i = 0; i < distance; i++) {
+      step++;
+      switch (direction) {
+        case 'R':
+          x++;
+          break;
+        case 'U':
+          y++;
+          break;
+        case 'L':
+          x--;
+          break;
+        case 'D':
+          y--;
+          break;
+      }
 
-  for (i = 0; i < distance; i++) {
-    switch (direction) {
-      case 'R':
-        x++;
-        break;
-      case 'U':
-        y++;
-        break;
-      case 'L':
-        x--;
-        break;
-      case 'D':
-        y--;
-        break;
+      path[createPositionKey(x, y)] = step;
     }
+  });
 
-    let key = createPositionKey(x, y);
-    if (path.includes(key)) {
-      
-      let distanceFromOrigo = Math.abs(x) + Math.abs(y);
-      encounters.push(distanceFromOrigo);
-    } else {
-      path.push(key);
+  x = 0;
+  y = 0;
+  step = 0;
+  let steps = new Array();
+  instructions = input[1].split(",");
+  instructions.map(instruction => {
+    let direction = instruction.substring(0, 1);
+    let distance = instruction.substring(1, instruction.length);
+
+    for (i = 0; i < distance; i++) {
+      step++;
+      switch (direction) {
+        case 'R':
+          x++;
+          break;
+        case 'U':
+          y++;
+          break;
+        case 'L':
+          x--;
+          break;
+        case 'D':
+          y--;
+          break;
+      }
+
+      if (path[createPositionKey(x, y)]) {
+        let myStep = path[createPositionKey(x, y)] + step;
+        steps.push(myStep);
+      }
     }
-  }
+  });
+
+  return Math.min(...steps)
 }
 
 const createPositionKey = (x, y) => {
