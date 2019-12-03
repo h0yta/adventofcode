@@ -60,7 +60,7 @@ const firstStar = function (input) {
     }
   });
 
-  return Math.min(...encounters)
+  return Math.min(...encounters);
 }
 
 const secondStar = function (input) {
@@ -127,7 +127,7 @@ const secondStar = function (input) {
     }
   });
 
-  return Math.min(...steps)
+  return Math.min(...steps);
 }
 
 const createPositionKey = (x, y) => {
