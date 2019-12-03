@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/h0yta/adventofcode#readme",
   "dependencies": {
-    "mocha": "^4.0.1"
+    "mocha": "6.2.2"
   }
 }
