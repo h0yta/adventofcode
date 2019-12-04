@@ -3,7 +3,7 @@ const utils = require('../util/fileUtil');
 const firstStar = (input) => {
   let matches = 0;
   for (password = input[0]; password <= input[1]; password++) {
-    if (hasDoubleDigit(password) && isIncreasing(password)) {
+    if (hasAtleastTwoAdjecentDigits(password) && isIncreasing(password)) {
       matches++;
     }
   }
@@ -14,7 +14,7 @@ const firstStar = (input) => {
 const secondStar = (input) => {
   let matches = 0;
   for (password = input[0]; password <= input[1]; password++) {
-    if (hasOnlyDoubleDigit(password) && isIncreasing(password)) {
+    if (hasExactlyTwoAdjecentDigits(password) && isIncreasing(password)) {
       matches++;
     }
   }
@@ -23,15 +23,15 @@ const secondStar = (input) => {
 }
 
 let doubleDigitRegex = RegExp('(\\d)\\1');
-const hasDoubleDigit = (code) => {
+const hasAtleastTwoAdjecentDigits = (code) => {
   return doubleDigitRegex.test(code.toString());
 }
 
-const hasOnlyDoubleDigit = (code) => {
+const hasExactlyTwoAdjecentDigits = (code) => {
   let matches = code.toString().match(/(\d)\1+/g);
   return matches != null && matches
-    .filter(m => m.split('').length % 2 === 0)
-    .length === matches.length;
+    .filter(m => m.split('').length === 2)
+    .length > 0;
 }
 
 const isIncreasing = (code) => {
@@ -40,14 +40,14 @@ const isIncreasing = (code) => {
 }
 
 exports.run = () => {
-  let input = utils.getInput('2019', 'day04', '\n');
-  
+  let input = utils.getInput('2019', 'day04', '-');
+
   console.log('Answer for first star', firstStar(input.map(x => parseInt(x))));
   console.log('Answer for second star', secondStar(input.map(x => parseInt(x))));
 }
 
 exports.runOne = firstStar;
 exports.runTwo = secondStar;
-exports.hasDoubleDigit = hasDoubleDigit;
-exports.hasOnlyDoubleDigit = hasOnlyDoubleDigit;
+exports.hasAtleastTwoAdjecentDigits = hasAtleastTwoAdjecentDigits;
+exports.hasExactlyTwoAdjecentDigits = hasExactlyTwoAdjecentDigits;
 exports.isIncreasing = isIncreasing;
