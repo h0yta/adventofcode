@@ -5,16 +5,16 @@ describe('2019 - Day 06', function () {
 
   describe('firstStar', function () {
 
-    it('should calculate number of possible keys', function () {
-      assert.equal(sut.runOne([3, 0, 4, 0, 99]), 0);
+    it('should calculate total distance weight of planets', function () {
+      assert.equal(sut.runOne(["COM)B", "B)C", "C)D", "D)E", "E)F", "B)G", "G)H", "D)I", "E)J", "J)K", "K)L"]), 42);
     });
 
   });
 
   describe('secondStar', function () {
 
-    it('should calculate number of possible keys', function () {
-      assert.equal(sut.runTwo([3, 12, 6, 12, 15, 1, 13, 14, 13, 4, 13, 99, -1, 0, 1, 9]), 0);
+    it('should calculate distance weight between YOU and SAN', function () {
+      assert.equal(sut.runTwo(["COM)B", "B)C", "C)D", "D)E", "E)F", "B)G", "G)H", "D)I", "E)J", "J)K", "K)L", "K)YOU", "I)SAN"]), 4);
     });
 
   });
