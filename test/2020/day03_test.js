@@ -7,7 +7,7 @@ describe('2020 - Day 03', function () {
   describe('firstStar', function () {
     let input = fs.readFileSync('./test/data/202003', 'utf8').split('\n');
 
-    it('should ...', function () {
+    it('should count number of trees in the slope', function () {
       assert.strictEqual(sut.runOne(input), 7);
     });
 
@@ -16,7 +16,7 @@ describe('2020 - Day 03', function () {
   describe('secondStar', function () {
     let input = fs.readFileSync('./test/data/202003', 'utf8').split('\n');
 
-    it('should ...', function () {
+    it('should count all the trees in all of the slopes', function () {
       assert.strictEqual(sut.runTwo(input), 336);
     });
 
