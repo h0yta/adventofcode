@@ -1,11 +1,33 @@
 const utils = require('../util/fileUtil');
 
 const firstStar = function (input) {
-  return 0;
+  let someArray = input.map(row => row.split(''));
+  console.log('TEST:', someArray.length, ' -> ', someArray[0].length);
+  return traverse(someArray, 3, 1);
 }
 
 const secondStar = function (input) {
-  return 0;
+  let someArray = input.map(row => row.split(''));
+  console.log('TEST:', someArray.length, ' -> ', someArray[0].length);
+  return traverse(someArray, 1, 1)
+    * traverse(someArray, 3, 1)
+    * traverse(someArray, 5, 1)
+    * traverse(someArray, 7, 1)
+    * traverse(someArray, 1, 2);
+}
+
+const traverse = function (someArray, xJump, yJump) {
+  let x = y = t = 0;
+  while (y < someArray.length) {
+    if (someArray[y][x] === '#') {
+      t++;
+    }
+
+    x = (x + xJump) % someArray[0].length;
+    y = y + yJump;
+  }
+
+  return t;
 }
 
 exports.run = function () {
