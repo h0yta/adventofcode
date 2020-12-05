@@ -1,12 +1,12 @@
 const utils = require('../util/fileUtil');
 
 const firstStar = function (input) {
-  let someArray = input.map(row => row.split(''));
+  let someArray = input.map(row => row.split('').filter(x => x.trim() != ''));
   return traverse(someArray, 3, 1);
 }
 
 const secondStar = function (input) {
-  let someArray = input.map(row => row.split(''));
+  let someArray = input.map(row => row.split('').filter(x => x.trim() != ''));
   return traverse(someArray, 1, 1)
     * traverse(someArray, 3, 1)
     * traverse(someArray, 5, 1)

@@ -5,11 +5,13 @@ const requiredAttributes = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'];
 
 const firstStar = function (input) {
   let passports = getPassports(input);
+  console.log(passports.length)
   return passports.filter(passport => hasRequiredAttributes(passport)).length;
 }
 
 const secondStar = function (input) {
   let passports = getPassports(input);
+  console.log(passports.length)
   return passports
     .filter(passport => hasRequiredAttributes(passport))
     .filter(passport => hasRequiredValues(passport))
@@ -44,8 +46,8 @@ const validEyeColors = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
 const hasRequiredValues = function (passport) {
   return passport.split(' ')
     .every(x => {
-      let key = x.split(':')[0];
-      let value = x.split(':')[1];
+      let key = x.split(':')[0].trim();
+      let value = x.split(':')[1].trim();
       switch (key) {
         case 'byr':
           // byr (Birth Year) - four digits; at least 1920 and at most 2002.

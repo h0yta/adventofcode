@@ -7,7 +7,7 @@ describe('2020 - Day 04', function () {
   describe('firstStar', function () {
     let input = fs.readFileSync('./test/data/202004', 'utf8').split('\n');
 
-    it('should validate passports attributes', function () {
+    it('should count valid passports based on attributes', function () {
       assert.strictEqual(sut.runOne(input), 2);
     });
 
@@ -16,7 +16,7 @@ describe('2020 - Day 04', function () {
   describe('secondStar', function () {
     let input = fs.readFileSync('./test/data/202004', 'utf8').split('\n');
 
-    it('should ...', function () {
+    it('should count valid passports based on values', function () {
       assert.strictEqual(sut.runTwo(input), 2);
     });
 
