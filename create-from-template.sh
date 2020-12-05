@@ -28,17 +28,17 @@ version() {
 }
 
 log() {
-	local message="$1"
-
-	echo -e "$GREEN$message$NC"
+    local message="$1"
+    
+    echo -e "$GREEN$message$NC"
 }
 
 log_error() {
-	local message="$1"
-	local exit_code="$2"
-
-	echo -e "$RED$message$NC"
-	exit $exit_code;
+    local message="$1"
+    local exit_code="$2"
+    
+    echo -e "$RED$message$NC"
+    exit $exit_code;
 }
 
 create_test_file() {
@@ -52,19 +52,19 @@ create_test_file() {
         log "Creating new directory ${test_dir}"
         mkdir ${test_dir}
     fi
-
+    
     if [[ ! -f "${test_file}" ]]
     then
         log "Creating new tets file ${test_file}"
         cp "$TEST_TEMPLATE" ${test_file}
-        sed -i "s/##YEAR##/$year/g" ${test_file}
-        sed -i "s/##DAY##/$day/g" ${test_file}
+        sed -i'' -e "s/##YEAR##/$year/g" ${test_file}
+        sed -i'' -e "s/##DAY##/$day/g" ${test_file}
     else
         log_error "File already exists ${test_file}"
     fi
 }
 
-create_test_data_file() {  
+create_test_data_file() {
     local year="$1"
     local day="$2"
     local data_dir="./test/data/${year}/"
@@ -75,7 +75,7 @@ create_test_data_file() {
         log "Creating new directory ${data_dir}"
         mkdir ${data_dir}
     fi
-
+    
     if [[ ! -f "${data_file}" ]]
     then
         log "Creating new test data file ${data_file}"
@@ -96,19 +96,19 @@ create_script_file() {
         log "Creating new directory ${script_dir}"
         mkdir ${script_dir}
     fi
-
+    
     if [[ ! -f "${script_file}" ]]
     then
         log "Creating new script file ${script_file}"
         cp "$SCRIPT_TEMPLATE" ${script_file}
-        sed -i 's/##YEAR##/$year/g' ${script_file}
-        sed -i 's/##DAY##/$day/g' ${script_file}
+        sed -i'' -e "s/##YEAR##/$year/g" ${script_file}
+        sed -i'' -e "s/##DAY##/$day/g" ${script_file}
     else
         log_error "File already exists ${script_file}"
     fi
 }
 
-create_data_file() {  
+create_data_file() {
     local year="$1"
     local day="$2"
     local data_dir="./data/${year}/"
@@ -119,7 +119,7 @@ create_data_file() {
         log "Creating new directory ${data_dir}"
         mkdir ${data_dir}
     fi
-
+    
     if [[ ! -f "${data_file}" ]]
     then
         log "Creating new data file ${data_file}"
@@ -134,25 +134,25 @@ while getopts ":hvy:d:" opt; do
         h)
             usage;
             exit 0;
-            ;;
+        ;;
         v)
             version;
             exit 0;
-            ;;
+        ;;
         y)
             YEAR=${OPTARG};
-            ;;
+        ;;
         d)
             DAY=${OPTARG};
-            ;;
+        ;;
         :)
             echo "Invalid option: $OPTARG requires an argument" 1>&2
             exit 1;
-            ;;
+        ;;
         \? | *)
             usage;
             exit 1;
-            ;;
+        ;;
     esac
 done
 
