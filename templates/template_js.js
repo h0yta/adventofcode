@@ -9,7 +9,7 @@ const secondStar = function (input) {
 }
 
 exports.run = function () {
-  let input = utils.getInput('##YEAR##', '##DAY##', '\n');
+  let input = utils.getInput('##YEAR##', 'day##DAY##', '\n');
   console.log('Answer for first star', firstStar(input));
   console.log('Answer for second star', secondStar(input));
 }

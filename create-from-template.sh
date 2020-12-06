@@ -46,6 +46,7 @@ create_test_file() {
     local day="$2"
     local test_dir="./test/${year}/"
     local test_file="./test/${year}/day${day}_test.js"
+    local tmp_file="./test/${year}/day${day}_test.js-e"
     
     if [[ ! -d "${test_dir}" ]]
     then
@@ -59,6 +60,7 @@ create_test_file() {
         cp "$TEST_TEMPLATE" ${test_file}
         sed -i'' -e "s/##YEAR##/$year/g" ${test_file}
         sed -i'' -e "s/##DAY##/$day/g" ${test_file}
+        rm -f ${tmp_file}
     else
         log_error "File already exists ${test_file}"
     fi
@@ -90,6 +92,7 @@ create_script_file() {
     local day="$2"
     local script_dir="./src/${year}/"
     local script_file="./src/${year}/day${day}.js"
+    local tmp_file="./src/${year}/day${day}.js-e"
     
     if [[ ! -d "${script_dir}" ]]
     then
@@ -103,6 +106,7 @@ create_script_file() {
         cp "$SCRIPT_TEMPLATE" ${script_file}
         sed -i'' -e "s/##YEAR##/$year/g" ${script_file}
         sed -i'' -e "s/##DAY##/$day/g" ${script_file}
+        rm -f ${tmp_file}
     else
         log_error "File already exists ${script_file}"
     fi
