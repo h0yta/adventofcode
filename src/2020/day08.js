@@ -1,51 +1,23 @@
 const utils = require('../util/fileUtil');
+const computer = require('./computer');
 
 const firstStar = function (input) {
-  let instructions = parseInstructions(input);
-  return runInstructions(instructions).acc;
+  let instructions = computer.parse(input);
+  return computer.run(instructions).acc;
 }
 
 const secondStar = function (input) {
   let cursor = 0;
+  let inputInstructions = computer.parse(input);
   while (cursor <= input.length) {
-    let instructions = updateInstruction(parseInstructions(input), cursor);
+    let instructions = updateInstruction(utils.copy(inputInstructions), cursor);
 
-    let result = runInstructions(instructions);
+    let result = computer.run(instructions);
     if (result.offset === instructions.length) {
       return result.acc;
     }
     cursor++;
   }
-}
-
-const runInstructions = function (instructions) {
-  let executedOffsets = new Array();
-  let accumulator = 0;
-  let offset = 0;
-
-  while (true) {
-    if (executedOffsets.includes(offset) || offset >= instructions.length) {
-      break;
-    }
-
-    executedOffsets.push(offset)
-    let nextInstruction = instructions[offset];
-    nextInstruction.operation
-    switch (nextInstruction.operation) {
-      case 'nop':
-        offset++;
-        break;
-      case 'acc':
-        accumulator += nextInstruction.argument;
-        offset++;
-        break;
-      case 'jmp':
-        offset += nextInstruction.argument;
-        break;
-    }
-  }
-
-  return { 'acc': accumulator, 'offset': offset };
 }
 
 const updateInstruction = function (instructions, instructionToChange) {
@@ -65,23 +37,6 @@ const updateInstruction = function (instructions, instructionToChange) {
     }
   }
   return instructions;
-}
-
-const parseInstructions = function (instructions) {
-  return instructions.map(parseInstruction);
-}
-
-const parseInstruction = function (instruction) {
-  let instrRegex = /^(\w\w\w)\s(.\d+)/;
-  let match = instrRegex.exec(instruction);
-  if (match === null) {
-    console.log('Found no match for', rule);
-  } else {
-    return {
-      "operation": match[1].trim(),
-      "argument": parseInt(match[2].trim())
-    }
-  }
 }
 
 exports.run = function () {

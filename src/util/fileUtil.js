@@ -11,6 +11,10 @@ exports.pad = function (n, width, z) {
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
+exports.copy = function (array) {
+  return array.map(x => ({ ...x }))
+}
+
 const flatten = function (arr) {
   return arr.reduce(function (flat, toFlatten) {
     return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
