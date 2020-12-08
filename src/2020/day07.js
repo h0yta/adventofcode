@@ -2,13 +2,13 @@ const utils = require('../util/fileUtil');
 
 const firstStar = function (color, input) {
   let parsed = input.map(parseRule);
-  return findBags(parsed, color, []);;
+  return findBags(parsed, color, []);
 }
 
 const secondStar = function (color, input) {
   let parsed = input.map(parseRule);
 
-  return calculateBagsCount(parsed, color);;
+  return calculateBagsCount(parsed, color);
 }
 
 const parseRule = function (rule) {
@@ -42,7 +42,7 @@ const parserChildren = function (rule) {
           "count": parseInt(match[1].trim())
         }
       }
-    })
+    });
 }
 
 const findBags = function (rules, theColor, visited) {
