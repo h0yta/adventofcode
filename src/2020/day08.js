@@ -10,7 +10,7 @@ const secondStar = function (input) {
   let cursor = 0;
   let inputInstructions = computer.parse(input);
   while (cursor <= input.length) {
-    let instructions = updateInstruction(utils.copy(inputInstructions), cursor);
+    let instructions = updateInstruction(utils.copyArray(inputInstructions), cursor);
 
     let result = computer.run(instructions);
     if (result.offset === instructions.length) {

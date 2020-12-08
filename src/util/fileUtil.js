@@ -11,7 +11,7 @@ exports.pad = function (n, width, z) {
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
-exports.copy = function (array) {
+exports.copyArray = function (array) {
   return array.map(x => ({ ...x }))
 }
 

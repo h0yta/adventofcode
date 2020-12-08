@@ -33,7 +33,7 @@ const parseInstructions = function (instructions) {
 }
 
 const parseInstruction = function (instruction) {
-  let instrRegex = /^(\w\w\w)\s(.\d+)/;
+  let instrRegex = /^(nop|acc|jmp)\s([+-]\d+)/;
   let match = instrRegex.exec(instruction);
   if (match === null) {
     console.log('Found no match for', rule);
