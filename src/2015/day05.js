@@ -1,8 +1,24 @@
 const utils = require('../util/fileUtil');
 
 const firstStar = function (input) {
-  return 0;
+  return input.filter(threeVows)
+    .filter(duobleLetter)
+    .filter(noUnallowedSubstrings)
+    .length
 }
+
+const threeVows = function (string) {
+  return string.split(/[a|e|i|o|u]/).length > 3;
+}
+
+const duobleLetter = function (string) {
+  return string.split(/(.)\1/).length > 1;
+}
+
+const noUnallowedSubstrings = function (string) {
+  return string.split(/(ab|cd|pq|xy)/).length <= 1;
+}
+
 
 const secondStar = function (input) {
   return 0;

@@ -7,8 +7,8 @@ describe('2015 - 05', function () {
   describe('firstStar', function () {
     let input = fs.readFileSync('./test/data/2015/day05', 'utf8').split('\n');
 
-    it('should ...', function () {
-      assert.strictEqual(sut.runOne(input), 0);
+    it('otototshould calculate number of nice strings', function () {
+      assert.strictEqual(sut.runOne(input), 2);
     });
 
   });
