@@ -6,22 +6,28 @@ const firstStar = function (input, inputStart) {
     let start = i - inputStart;
     let end = start + inputStart;
     let preamble = input.slice(start, end);
-    let magicnumber = input[i];
+    let number = input[i];
 
-    if (!isInvalid(preamble, magicnumber)) {
-      return magicnumber;
+    if (!isInvalid(preamble, number)) {
+      return number;
     }
   }
 }
 
 const secondStar = function (input, invalidNumber) {
   input = input.map(x => parseInt(x));
-  for (let start = 0; start < input.length; start++) {
+  let start = 0;
+  let end = 1;
+  while (end < input.length) {
+    let sum = input.slice(start, end).reduce((x, y) => x + y, 0);
 
-    let end = findContiguousRange(input, start, invalidNumber);
-    if (end > 0) {
-      let contiguousRange = input.slice(start, end);
-      return Math.max(...contiguousRange) + Math.min(...contiguousRange);
+    if (sum === invalidNumber) {
+      console.log('#', start, end, (end - start))
+      return Math.max(...input.slice(start, end)) + Math.min(...input.slice(start, end));
+    } else if (sum > invalidNumber) {
+      start++;
+    } else if (sum < invalidNumber) {
+      end++;
     }
   }
 }
@@ -40,19 +46,6 @@ const isInvalid = (preamble, magicNumber) => {
   }
 
   return false;
-}
-
-const findContiguousRange = (input, start, invalidNumber) => {
-  for (let end = start + 1; end < input.length; end++) {
-    let sum = input.slice(start, end)
-      .reduce((x, y) => x + y, 0);
-
-    if (sum === invalidNumber) {
-      return end;
-    } else if (sum > invalidNumber) {
-      return 0;
-    }
-  }
 }
 
 exports.run = function () {

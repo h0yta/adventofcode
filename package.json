@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "advent": "node ./src/index.js",
-    "test": "mocha --watch"
+    "test": "mocha --watch",
+    "ototot": "mocha --watch -grep ototot"
   },
   "repository": {
     "type": "git",
