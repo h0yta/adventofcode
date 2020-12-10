@@ -7,6 +7,12 @@ const firstStar = function (input) {
     .length
 }
 
+const secondStar = function (input) {
+  return input.filter(doubleLetterThatRepeats)
+    .filter(letterRepeatsWithSpace)
+    .length
+}
+
 const threeVows = function (string) {
   return string.split(/[a|e|i|o|u]/).length > 3;
 }
@@ -19,9 +25,12 @@ const noUnallowedSubstrings = function (string) {
   return string.split(/(ab|cd|pq|xy)/).length <= 1;
 }
 
+const doubleLetterThatRepeats = function (string) {
+  return string.match(/.*((\w\w)).*\1/);
+}
 
-const secondStar = function (input) {
-  return 0;
+const letterRepeatsWithSpace = function (string) {
+  return string.match(/.*(\w).\1/);
 }
 
 exports.run = function () {
