@@ -5,6 +5,12 @@ exports.getInput = function (year, filename, splitter) {
   return file.split(splitter);
 }
 
+exports.padRight = function (n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : n + new Array(width - n.length + 1).join(z);
+}
+
 exports.pad = function (n, width, z) {
   z = z || '0';
   n = n + '';
