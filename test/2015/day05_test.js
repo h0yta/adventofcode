@@ -7,7 +7,7 @@ describe('2015 - 05', function () {
   describe('firstStar', function () {
     let input = fs.readFileSync('./test/data/2015/day05', 'utf8').split('\n');
 
-    it('otototshould calculate number of nice strings', function () {
+    it('should calculate number of nice strings', function () {
       assert.strictEqual(sut.runOne(input), 2);
     });
 
@@ -16,7 +16,7 @@ describe('2015 - 05', function () {
   describe('secondStar', function () {
     let input = fs.readFileSync('./test/data/2015/day05', 'utf8').split('\n');
 
-    it('should ...', function () {
+    it('should calculate number of nice strings', function () {
       assert.strictEqual(sut.runTwo(input), 0);
     });
 
