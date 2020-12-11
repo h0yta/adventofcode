@@ -1,9 +1,9 @@
 const utils = require('../util/fileUtil');
 
 const firstStar = function (input) {
-  let houses = Array.from(Array(input.length * 2 + 1).fill(0), () => new Array(input.length * 2 + 1).fill(0))
-  let x = y = input.length;
-  houses[x][y]++;
+  let houses = new Set();
+  let x = y = 0;
+  houses.add(x + '#' + y);
 
   input.forEach(instruction => {
     switch (instruction) {
@@ -12,16 +12,16 @@ const firstStar = function (input) {
       case 'v': y--; break;
       case '<': x--; break;
     }
-    houses[x][y]++;
+    houses.add(x + '#' + y);
   });
 
-  return houses.map(x => x.filter(y => y > 0).length).reduce((x, y) => x + y, 0);
+  return houses.size;
 }
 
 const secondStar = function (input) {
-  let houses = Array.from(Array(input.length * 2 + 1).fill(0), () => new Array(input.length * 2 + 1).fill(0))
+  let houses = new Set();
   let santaX = santaY = robotX = robotY = input.length;
-  houses[santaX][santaY]++;
+  houses.add(santaX + '#' + santaY);
 
   for (let i = 0; i < input.length; i++) {
     let instruction = input[i];
@@ -34,7 +34,7 @@ const secondStar = function (input) {
         case 'v': santaY--; break;
         case '<': santaX--; break;
       }
-      houses[santaX][santaY]++;
+      houses.add(santaX + '#' + santaY);
     } else {
       // Move Robot
       switch (instruction) {
@@ -43,11 +43,11 @@ const secondStar = function (input) {
         case 'v': robotY--; break;
         case '<': robotX--; break;
       }
-      houses[robotX][robotY]++;
+      houses.add(robotX + '#' + robotY);
     }
   }
 
-  return houses.map(x => x.filter(y => y > 0).length).reduce((x, y) => x + y, 0);
+  return houses.size;
 }
 
 exports.run = function () {
