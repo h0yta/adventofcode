@@ -16,7 +16,7 @@ describe('2020 - 11', function () {
   describe('secondStar', function () {
     let input = fs.readFileSync('./test/data/2020/day11', 'utf8').split('\n');
 
-    it('otototshould find number of occupied seats', function () {
+    it('should find number of occupied seats', function () {
       assert.strictEqual(sut.runTwo(input), 26);
     });
 
