@@ -13,21 +13,21 @@ const runGame = (input, turns) => {
     'turn': 1,
     'last': 0,
     'spoken': 0,
-    'game': {}
+    'game': new Map()
   }
 
   input.map(x => parseInt(x)).forEach(x => {
-    score.game[x] = score.turn;
+    score.game.set(x, score.turn);
     score.last = x;
     score.turn++;
   })
 
   for (; score.turn < turns; score.turn++) {
     let spoken = 0;
-    if (score.game[score.spoken] !== undefined) {
-      spoken = score.turn - score.game[score.spoken];
+    if (score.game.has(score.spoken)) {
+      spoken = score.turn - score.game.get(score.spoken);
     }
-    score.game[score.spoken] = score.turn;
+    score.game.set(score.spoken, score.turn);
     score.last = score.spoken;
     score.spoken = spoken;
   }
