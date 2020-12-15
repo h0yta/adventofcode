@@ -7,7 +7,7 @@ describe('2020 - 10', function () {
   describe('firstStar', function () {
     let input = fs.readFileSync('./test/data/2020/day10', 'utf8').split('\n');
 
-    it('should ...', function () {
+    it('should calculate number of 1 and 3 jolts', function () {
       assert.strictEqual(sut.runOne(input), 220);
     });
 
@@ -16,12 +16,12 @@ describe('2020 - 10', function () {
   describe('secondStar', function () {
 
     let zeroInput = [16, 10, 15, 5, 1, 11, 7, 19, 6, 12, 4];
-    it('should ...', function () {
+    it('should calculate number of distinct ways to arrange the adapters', function () {
       assert.strictEqual(sut.runTwo(zeroInput), 8);
     });
 
     let input = fs.readFileSync('./test/data/2020/day10', 'utf8').split('\n');
-    it('should ...', function () {
+    it('should calculate number of distinct ways to arrange the adapters', function () {
       assert.strictEqual(sut.runTwo(input), 19208);
     });
 
