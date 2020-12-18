@@ -7,7 +7,7 @@ const firstStar = function (input) {
     grid = createThreeDimensionalNewGrid(grid);
   }
 
-  return grid.length;
+  return grid.size;
 }
 
 const secondStar = function (input) {
@@ -17,20 +17,20 @@ const secondStar = function (input) {
     grid = createFourDimensionalNewGrid(grid);
   }
 
-  return grid.length;
+  return grid.size;
 }
 
 const createThreeDimensionalNewGrid = (grid) => {
-  let newGrid = [];
+  let newGrid = new Map();
   let bound = findBounderies(grid);
   for (let x = bound['xMin'] - 1; x <= bound['xMax'] + 1; x++) {
     for (let y = bound['yMin'] - 1; y <= bound['yMax'] + 1; y++) {
       for (let z = bound['zMin'] - 1; z <= bound['zMax'] + 1; z++) {
         let neighbours = countNeighbours(grid, x, y, z, 0);
         if (isActive(grid, x, y, z, 0) && neighbours >= 2 && neighbours <= 3) {
-          newGrid.push({ x, y, z, w: 0 });
+          newGrid.set(createKey(x, y, z, 0), { x, y, z, w: 0 });
         } else if (neighbours === 3) {
-          newGrid.push({ x, y, z, w: 0 });
+          newGrid.set(createKey(x, y, z, 0), { x, y, z, w: 0 });
         }
       }
     }
@@ -39,7 +39,7 @@ const createThreeDimensionalNewGrid = (grid) => {
 }
 
 const createFourDimensionalNewGrid = (grid) => {
-  let newGrid = [];
+  let newGrid = new Map();
   let bound = findBounderies(grid);
   for (let x = bound['xMin'] - 1; x <= bound['xMax'] + 1; x++) {
     for (let y = bound['yMin'] - 1; y <= bound['yMax'] + 1; y++) {
@@ -47,9 +47,9 @@ const createFourDimensionalNewGrid = (grid) => {
         for (let w = bound['wMin'] - 1; w <= bound['wMax'] + 1; w++) {
           let neighbours = countNeighbours(grid, x, y, z, w);
           if (isActive(grid, x, y, z, w) && neighbours >= 2 && neighbours <= 3) {
-            newGrid.push({ x, y, z, w });
+            newGrid.set(createKey(x, y, z, w), { x, y, z, w });
           } else if (neighbours === 3) {
-            newGrid.push({ x, y, z, w });
+            newGrid.set(createKey(x, y, z, w), { x, y, z, w });
           }
         }
       }
@@ -80,11 +80,7 @@ const countNeighbours = (grid, x, y, z, w) => {
 }
 
 const isActive = (grid, x, y, z, w) => {
-  return grid.filter(point =>
-    point.x === x &&
-    point.y === y &&
-    point.z === z &&
-    point.w === w).length === 1;
+  return grid.has(createKey(x, y, z, w));
 }
 
 const findBounderies = (grid) => {
@@ -110,16 +106,20 @@ const findBounderies = (grid) => {
 }
 
 const parseInput = (input) => {
-  let grid = [];
+  let grid = new Map();
   for (let y = 0; y < input.length; y++) {
     let row = input[y].split('');
     for (let x = 0; x < row.length; x++) {
       if (row[x] === '#') {
-        grid.push({ x, y, z: 0, w: 0 });
+        grid.set(createKey(x, y, 0, 0), { x, y, z: 0, w: 0 });
       }
     }
   }
   return grid;
+}
+
+const createKey = (x, y, z, w) => {
+  return 'x' + x + 'y' + y + 'z' + z + 'w' + w;
 }
 
 exports.run = function () {

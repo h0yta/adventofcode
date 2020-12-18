@@ -49,7 +49,6 @@ const evaluateParenthesesPartTwo = function (row) {
 const evaluateLeftToRight = function (row) {
   let sum = 0;
   let operator = '';
-  console.log(row);
   row.split(' ')
     .forEach(part => {
       if (/\d+/.test(part)) {
