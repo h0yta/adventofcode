@@ -16,7 +16,7 @@ describe('2020 - 20', function () {
   describe('secondStar', function () {
     let input = fs.readFileSync('./test/data/2020/day20', 'utf8').split('\n\n');
 
-    it('otototshould count number of #, excluding the seamonsters', function () {
+    it('should count number of #, excluding the seamonsters', function () {
       assert.strictEqual(sut.runTwo(input), 273);
     });
 
