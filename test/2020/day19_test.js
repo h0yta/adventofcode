@@ -20,7 +20,7 @@ describe('2020 - 19', function () {
       assert.strictEqual(sut.runOne(input), 3);
     });
 
-    it('otototshould find the number of valid messages', function () {
+    it('should find the number of valid messages', function () {
       assert.strictEqual(sut.runTwo(input), 12);
     });
 
