@@ -17,11 +17,9 @@ const firstStar = function (input) {
     });
 
     return { allergen: allergen, ingredients: intersect, done: intersect.length === 1 };
-  })
+  });
 
-  let count = 0;
-  while (allergens.filter(x => !x.done)) {
-    if (count++ > 10) break;
+  while (allergens.filter(x => !x.done).length > 0) {
     allergens.forEach(allergen => {
       if (allergen.done) {
         allergens.forEach(mA => {
@@ -29,7 +27,7 @@ const firstStar = function (input) {
             mA.ingredients = mA.ingredients.filter(i => i !== allergen.ingredients[0]);
             mA.done = mA.ingredients.length === 1;
           }
-        })
+        });
       }
     });
   }
@@ -69,7 +67,7 @@ const secondStar = function (input) {
             mA.ingredients = mA.ingredients.filter(i => i !== allergen.ingredients[0]);
             mA.done = mA.ingredients.length === 1;
           }
-        })
+        });
       }
     });
   }
