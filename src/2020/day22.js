@@ -10,7 +10,7 @@ const firstStar = function (input) {
     .slice(1, input[1].length)
     .map(x => parseInt(x));
 
-  playComabt(player1, player2);
+  playCombat(player1, player2);
 
   if (player1.length > 0) {
     return calculateScore(player1);
@@ -29,7 +29,7 @@ const secondStar = function (input) {
     .slice(1, input[1].length)
     .map(x => parseInt(x));
 
-  playRecursiveComabt(player1, player2, 1);
+  playRecursiveCombat(player1, player2);
 
   if (player1.length > 0) {
     return calculateScore(player1);
@@ -38,8 +38,7 @@ const secondStar = function (input) {
   }
 }
 
-const playComabt = (player1, player2) => {
-  // Play combat
+const playCombat = (player1, player2) => {
   while (player1.length > 0 && player2.length > 0) {
     let p1 = player1.shift();
     let p2 = player2.shift();
@@ -53,12 +52,9 @@ const playComabt = (player1, player2) => {
   }
 }
 
-const playRecursiveComabt = (player1, player2, game) => {
-  // Play combat
+const playRecursiveCombat = (player1, player2) => {
   let playedCombinations = new Map();
-  let count = 1;
   while (player1.length > 0 && player2.length > 0) {
-    //console.log('R', game, count++, player1, player2)
     if (playedCombinations.has(createKey(player1, player2))) {
       return true;
     } else {
@@ -68,11 +64,7 @@ const playRecursiveComabt = (player1, player2, game) => {
     let p1 = player1.shift();
     let p2 = player2.shift();
     if (player1.length >= p1 && player2.length >= p2) {
-      if (playRecursiveComabt(
-        player1.slice(0, p1),
-        player2.slice(0, p2),
-        game + 1)) {
-
+      if (playRecursiveCombat(player1.slice(0, p1), player2.slice(0, p2))) {
         player1.push(p1);
         player1.push(p2);
       } else {
@@ -100,7 +92,7 @@ const calculateScore = (deck) => {
 }
 
 const createKey = (player1, player2) => {
-  return player1.join('') + '#' + player2.join('');
+  return player1.join('#') + '#' + player2.join('#');
 }
 
 exports.run = function () {
