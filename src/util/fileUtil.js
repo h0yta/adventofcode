@@ -21,6 +21,10 @@ exports.copyArray = function (array) {
   return array.map(x => ({ ...x }))
 }
 
+exports.copy = function (val) {
+  return [...val].map(x => ({ ...x })).join('');
+}
+
 const flatten = function (arr) {
   return arr.reduce(function (flat, toFlatten) {
     return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
