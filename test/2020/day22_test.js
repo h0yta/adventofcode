@@ -16,7 +16,7 @@ describe('2020 - 22', function () {
   describe('secondStar', function () {
     let input = fs.readFileSync('./test/data/2020/day22', 'utf8').split('\n\n');
 
-    it('otototshould calculate the winners score recursive combat', function () {
+    it('should calculate the winners score recursive combat', function () {
       assert.strictEqual(sut.runTwo(input), 291);
     });
 
