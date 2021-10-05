@@ -16,7 +16,8 @@ describe('2020 - 24', function () {
   describe('secondStar', function () {
     let input = fs.readFileSync('./test/data/2020/day24', 'utf8').split('\n');
 
-    it('should count number of black tiles after 100 days', function () {
+    // Takes around 1 second, so excluding it
+    xit('should count number of black tiles after 100 days', function () {
       assert.strictEqual(sut.runTwo(input), 2208);
     });
 
