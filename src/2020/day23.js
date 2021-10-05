@@ -4,12 +4,10 @@ const firstStar = function (cups, moves) {
   cups = cups.map(x => parseInt(x));
   let max = Math.max(...cups);
 
-  let head = createNodes(cups);
-  let cupsCircle = { 'head': head };
-
+  let cupsCircle = createCupsCircle(cups);
   play(cupsCircle, moves, max);
 
-  return getResultForFirstStar(convertToArray(cupsCircle, max));
+  return getResultForFirstStar(convertCircleToLine(cupsCircle, max));
 }
 
 const getResultForFirstStar = (cups) => {
@@ -26,22 +24,19 @@ const secondStar = function (cups, moves) {
     cups.push(i);
   }
 
-  let head = createNodes(cups);
-  let cupsCircle = { 'head': head };
-
+  let cupsCircle = createCupsCircle(cups);
   play(cupsCircle, moves, absoluteMax);
 
   return getResultForSecondStar(cupsCircle);
 }
 
 const getResultForSecondStar = (cupsCircle) => {
-  let lastNode = orderArray[1];
+  let lastNode = cupsCircle.order[1];
 
   return lastNode.next.value * lastNode.next.next.value;
 }
 
-const orderArray = [];
-const createNodes = (values) => {
+const createCupsCircle = (values) => {
   let newValues = values.map(value => {
     return {
       value: value,
@@ -58,14 +53,15 @@ const createNodes = (values) => {
     newValues[index - 1].next = newValues[index];
   }
 
+  let orderArray = [];
   for (let index = 0; index < newValues.length; index++) {
     orderArray[newValues[index].value] = newValues[index];
   }
 
-  return newValues[0];
+  return { 'head': newValues[0], 'order': orderArray };
 }
 
-const convertToArray = (cupsCircle, length) => {
+const convertCircleToLine = (cupsCircle, length) => {
   let lastNode = cupsCircle.head;
   let myArray = [];
   let counter = 0;
@@ -81,10 +77,9 @@ const play = (cupsCircle, moves, max) => {
   let currentCup = cupsCircle.head;
   for (let move = 0; move < moves; move++) {
     let firstPickup = currentCup.next;
-    let secondPickup = currentCup.next.next;
     let thirdPickup = currentCup.next.next.next;
 
-    let destination = findDestination(currentCup, max);
+    let destination = findDestination(cupsCircle.order, currentCup, max);
 
     currentCup.next = thirdPickup.next;
     thirdPickup.next = destination.next;
@@ -93,7 +88,7 @@ const play = (cupsCircle, moves, max) => {
   }
 }
 
-const findDestination = (currentCup, max) => {
+const findDestination = (order, currentCup, max) => {
   let destination = currentCup.value - 1;
   if (destination < 1) {
     destination = max;
@@ -108,14 +103,7 @@ const findDestination = (currentCup, max) => {
     }
   }
 
-  return orderArray[destination];
-}
-
-const printCircle = (cupsCircle, currentCup, max) => {
-  return convertToArray(cupsCircle, max).map(cup => {
-    if (cup === currentCup) return '(' + cup + ')';
-    else return cup;
-  }).join(' ')
+  return order[destination];
 }
 
 exports.run = function () {
