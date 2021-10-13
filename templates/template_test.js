@@ -7,7 +7,7 @@ describe('##YEAR## - ##DAY##', function () {
   describe('firstStar', function () {
     let input = fs.readFileSync('./test/data/##YEAR##/day##DAY##', 'utf8').split('\n');
 
-    it('should ...', function () {
+    it('ototot should ...', function () {
       assert.strictEqual(sut.runOne(input), 0);
     });
 
@@ -16,7 +16,7 @@ describe('##YEAR## - ##DAY##', function () {
   describe('secondStar', function () {
     let input = fs.readFileSync('./test/data/##YEAR##/day##DAY##', 'utf8').split('\n');
 
-    it('should ...', function () {
+    it('ototot should ...', function () {
       assert.strictEqual(sut.runTwo(input), 0);
     });
 

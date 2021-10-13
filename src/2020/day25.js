@@ -40,4 +40,3 @@ exports.run = function () {
 }
 
 exports.runOne = firstStar;
-exports.runTwo = secondStar;
