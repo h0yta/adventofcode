@@ -7,7 +7,7 @@ describe('2016 - 10', function () {
   describe('firstStar', function () {
     let input = fs.readFileSync('./test/data/2016/day10', 'utf8').split('\n');
 
-    it(' should ...', function () {
+    xit(' should ...', function () {
       assert.strictEqual(sut.runOne(input), 2);
     });
 
@@ -16,7 +16,7 @@ describe('2016 - 10', function () {
   describe('secondStar', function () {
     let input = fs.readFileSync('./test/data/2016/day10', 'utf8').split('\n');
 
-    it(' should ...', function () {
+    xit(' should ...', function () {
       assert.strictEqual(sut.runTwo(input), 0);
     });
 

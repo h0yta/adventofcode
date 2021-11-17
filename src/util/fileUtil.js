@@ -5,6 +5,10 @@ exports.getInput = function (year, filename, splitter) {
   return file.split(splitter);
 }
 
+exports.getCompleteInput = function (year, filename) {
+  return fs.readFileSync('./data/' + year + '/' + filename, 'utf8');
+}
+
 exports.padRight = function (n, width, z) {
   z = z || '0';
   n = n + '';
