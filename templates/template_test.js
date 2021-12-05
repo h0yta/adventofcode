@@ -2,21 +2,21 @@ const sut = require('../../src/##YEAR##/day##DAY##');
 const fs = require('fs');
 const assert = require('assert');
 
-describe('##YEAR## - ##DAY##', function () {
+describe('##YEAR## - ##DAY##', () => {
 
-  describe('firstStar', function () {
+  describe('firstStar', () => {
     let input = fs.readFileSync('./test/data/##YEAR##/day##DAY##', 'utf8').split('\n');
 
-    it('ototot should ...', function () {
+    it('ototot should ...', () => {
       assert.strictEqual(sut.runOne(input), 0);
     });
 
   });
 
-  describe('secondStar', function () {
+  describe('secondStar', () => {
     let input = fs.readFileSync('./test/data/##YEAR##/day##DAY##', 'utf8').split('\n');
 
-    it('ototot should ...', function () {
+    it(' should ...', () => {
       assert.strictEqual(sut.runTwo(input), 0);
     });
 
