@@ -28,29 +28,24 @@ const constructMapping = (input) => {
   mapping[7] = input.filter(x => x.length === 3)[0];
   mapping[8] = input.filter(x => x.length === 7)[0];
   mapping[3] = input.filter(x => x.length === 5
-    && stringDiff(x, mapping[1]) == 0)[0];
+    && stringDiff(x, mapping[1]) === 0)[0];
   mapping[9] = input.filter(x => x.length === 6
-    && stringContainsAllChars(x, mapping[3]))[0];
+    && stringDiff(x, mapping[3]) === 0)[0];
   mapping[0] = input.filter(x => x.length === 6
-    && !stringContainsAllChars(x, mapping[3])
-    && stringContainsAllChars(x, mapping[1]))[0];
+    && stringDiff(x, mapping[3]) !== 0
+    && stringDiff(x, mapping[1]) === 0)[0];
   mapping[2] = input.filter(x => x.length === 5
-    && stringDiff(x, mapping[4]) == 2)[0];
+    && stringDiff(x, mapping[4]) === 2)[0];
   mapping[5] = input.filter(x => x.length === 5
     && x !== mapping[3]
-    && stringDiff(x, mapping[4]) == 1)[0];
+    && stringDiff(x, mapping[4]) === 1)[0];
   mapping[6] = input.filter(x => x.length === 6
-    && !stringContainsAllChars(x, mapping[1]))[0];
+    && stringDiff(x, mapping[1]) !== 0)[0];
   return mapping;
 }
 
-const stringContainsAllChars = (string, chars) => {
-  return chars.split('').filter(x => string.includes(x)).length === chars.length;
-}
-
 const stringDiff = (string, chars) => {
-  let diff = chars.length - chars.split('').filter(x => string.includes(x)).length;
-  return diff;
+  return chars.length - chars.split('').filter(x => string.includes(x)).length;
 }
 
 const parseInput = (input) => {
