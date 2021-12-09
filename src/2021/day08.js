@@ -27,25 +27,37 @@ const constructMapping = (input) => {
   mapping[4] = input.filter(x => x.length === 4)[0];
   mapping[7] = input.filter(x => x.length === 3)[0];
   mapping[8] = input.filter(x => x.length === 7)[0];
-  mapping[3] = input.filter(x => x.length === 5
-    && stringDiff(x, mapping[1]) === 0)[0];
+
+  // Includes easy ones
   mapping[9] = input.filter(x => x.length === 6
-    && stringDiff(x, mapping[3]) === 0)[0];
+    && completlyIncludes(x, mapping[4]))[0];
   mapping[0] = input.filter(x => x.length === 6
-    && stringDiff(x, mapping[3]) !== 0
-    && stringDiff(x, mapping[1]) === 0)[0];
-  mapping[2] = input.filter(x => x.length === 5
-    && stringDiff(x, mapping[4]) === 2)[0];
-  mapping[5] = input.filter(x => x.length === 5
-    && x !== mapping[3]
-    && stringDiff(x, mapping[4]) === 1)[0];
+    && completlyIncludes(x, mapping[7])
+    && !completlyIncludes(x, mapping[4]))[0];
   mapping[6] = input.filter(x => x.length === 6
-    && stringDiff(x, mapping[1]) !== 0)[0];
+    && !completlyIncludes(x, mapping[4])
+    && !completlyIncludes(x, mapping[7]))[0];
+
+  // Includes others
+  mapping[3] = input.filter(x => x.length === 5
+    && completlyIncludes(x, mapping[7]))[0];
+  mapping[5] = input.filter(x => x.length === 5
+    && completlyIncludes(mapping[6], x))[0];
+  mapping[2] = input.filter(x => x.length === 5
+    && !completlyIncludes(x, mapping[7])
+    && !completlyIncludes(mapping[6], x))[0];
+
   return mapping;
 }
 
-const stringDiff = (string, chars) => {
-  return chars.length - chars.split('').filter(x => string.includes(x)).length;
+/**
+ * Returns TRUE if all characters in the second string is included in the first string.
+ * @param {String} one 
+ * @param {String} two 
+ * @returns TRUE / FALSE
+ */
+const completlyIncludes = (one, two) => {
+  return two.length - two.split('').filter(x => one.includes(x)).length === 0;
 }
 
 const parseInput = (input) => {
