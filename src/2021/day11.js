@@ -11,28 +11,37 @@ const firstStar = (input, steps) => {
   return flashes;
 }
 
-const flash = (input) => {
-  let flashed = input.flatMap(row => row.filter(x => x.value > 9));
-  let flashedNo = flashed.length;
-  if (flashedNo === 0) return 0;
+const secondStar = (input) => {
+  input = parseInput(input);
+  const MAX = input.length * input[0].length;
+  for (let step = 1; true; step++) {
+    input.forEach(row => row.forEach(x => { x.flashed = false; x.value++ }));
+    let flashes = flash(input);
+    if (flashes === MAX) return step;
+  }
+}
 
-  for (let i = 0; i < flashedNo; i++) {
-    let oct = flashed[i];
-    input[oct.y][oct.x].flashed = true;
-    input[oct.y][oct.x].value = 0;
+const flash = (input) => {
+  let flashed = input
+    .flatMap(row => row.filter(x => x.value > 9));
+  if (flashed.length === 0) {
+    return 0;
   }
 
-  for (let i = 0; i < flashedNo; i++) {
-    let oct = flashed[i];
+  flashed.forEach(oct => {
+    input[oct.y][oct.x].flashed = true;
+    input[oct.y][oct.x].value = 0;
+  });
+
+  flashed.forEach(oct => {
     findAdjecent(input, oct.y, oct.x)
       .filter(adj => adj.flashed === false)
       .forEach(adj => {
         input[adj.y][adj.x].value++
       });
-  }
+  });
 
-  flashedNo += flash(input);
-  return flashedNo;
+  return flash(input) + flashed.length;
 }
 
 const findAdjecent = (input, y, x) => {
@@ -55,26 +64,19 @@ const findAdjecent = (input, y, x) => {
   return adjecent.filter(x => x !== undefined);
 }
 
-const secondStar = (input) => {
-  input = parseInput(input);
-  const MAX = input.length * input[0].length;
-  for (let step = 1; true; step++) {
-    input.forEach(row => row.forEach(x => { x.flashed = false; x.value++ }));
-    let flashes = flash(input);
-    if (flashes === MAX) return step;
-  }
-}
-
 const parseInput = (input) => {
-  input = input.map(row => row.split('').map(x => parseInt(x)));
-  let octopuses = new Array(input.length).fill(0).map(() => new Array(input[9].length).fill(0));
+  input = input
+    .map(row => row.split('')
+      .map(x => parseInt(x)));
+  let octopuses = new Array(input.length)
+    .fill(0)
+    .map(() => new Array(input[9].length)
+      .fill(0));
+
   for (let y = 0; y < input.length; y++) {
     for (let x = 0; x < input[0].length; x++) {
       octopuses[y][x] = {
-        y: y,
-        x: x,
-        value: input[y][x],
-        flashed: false
+        y: y, x: x, value: input[y][x], flashed: false
       }
     }
   }
