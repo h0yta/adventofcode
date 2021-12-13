@@ -23,17 +23,17 @@ describe('2021 - 12', () => {
 
   describe('secondStar', () => {
     let input1 = fs.readFileSync('./test/data/2021/day12-1', 'utf8').split('\n');
-    it(' ototot should count number of avalible paths', () => {
+    it(' should count number of avalible paths', () => {
       assert.strictEqual(sut.runTwo(input1), 36);
     });
 
     let input2 = fs.readFileSync('./test/data/2021/day12-2', 'utf8').split('\n');
-    it(' ototot should count number of avalible paths', () => {
+    it(' should count number of avalible paths', () => {
       assert.strictEqual(sut.runTwo(input2), 103);
     });
 
     let input3 = fs.readFileSync('./test/data/2021/day12-3', 'utf8').split('\n');
-    it(' ototot should count number of avalible paths', () => {
+    it(' should count number of avalible paths', () => {
       assert.strictEqual(sut.runTwo(input3), 3509);
     });
 
