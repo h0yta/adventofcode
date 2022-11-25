@@ -12,7 +12,7 @@ SCRIPT_TEMPLATE="templates/template_js.js"
 
 usage() {
     cat <<HELP
-USAGE: $SCRIPT_NAME [-h] [-v] [-c] [-u] [-a] [-t]
+USAGE: $SCRIPT_NAME [-h] [-v] [-y] [-d]
     -h  - Display this help message
     -v  - Display version
     -y  - Year
