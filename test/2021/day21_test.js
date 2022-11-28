@@ -7,7 +7,7 @@ describe('2021 - 21', () => {
   describe('firstStar', () => {
     let input = fs.readFileSync('./test/data/2021/day21', 'utf8').split('\n');
 
-    it(' ototot should calculate the final score', () => {
+    it(' should calculate the final score', () => {
       assert.strictEqual(sut.runOne(input), 739785);
     });
 
