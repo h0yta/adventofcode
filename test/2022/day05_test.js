@@ -16,7 +16,7 @@ describe('2022 - 05', () => {
   describe('secondStar', () => {
     let input = fs.readFileSync('./test/data/2022/day05', 'utf8').split('\r\n');
 
-    it(' ototot top row should be', () => {
+    it(' top row should be', () => {
       assert.strictEqual(sut.runTwo(input), 'MCD');
     });
 
