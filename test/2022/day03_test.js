@@ -16,7 +16,7 @@ describe('2022 - 03', () => {
   describe('secondStar', () => {
     let input = fs.readFileSync('./test/data/2022/day03', 'utf8').split('\n');
 
-    it('ototot should calculate sum of the priorities of all groups', () => {
+    it(' should calculate sum of the priorities of all groups', () => {
       assert.strictEqual(sut.runTwo(input), 70);
     });
 
