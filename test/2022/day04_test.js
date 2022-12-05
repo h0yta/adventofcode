@@ -16,7 +16,7 @@ describe('2022 - 04', () => {
   describe('secondStar', () => {
     let input = fs.readFileSync('./test/data/2022/day04', 'utf8').split('\n');
 
-    it(' ototot should count pairs that is fully contained by the other', () => {
+    it(' should count pairs that is fully contained by the other', () => {
       assert.strictEqual(sut.runTwo(input), 4);
     });
 
