@@ -5,7 +5,7 @@ const assert = require('assert');
 describe('##YEAR## - ##DAY##', () => {
 
   describe('firstStar', () => {
-    let input = fs.readFileSync('./test/data/##YEAR##/day##DAY##', 'utf8').split('\n');
+    let input = fs.readFileSync('./test/data/##YEAR##/day##DAY##-1', 'utf8').split('\n');
 
     it('ototot should ...', () => {
       assert.strictEqual(sut.runOne(input), 0);
@@ -14,7 +14,7 @@ describe('##YEAR## - ##DAY##', () => {
   });
 
   describe('secondStar', () => {
-    let input = fs.readFileSync('./test/data/##YEAR##/day##DAY##', 'utf8').split('\n');
+    let input = fs.readFileSync('./test/data/##YEAR##/day##DAY##-2', 'utf8').split('\n');
 
     it(' should ...', () => {
       assert.strictEqual(sut.runTwo(input), 0);
