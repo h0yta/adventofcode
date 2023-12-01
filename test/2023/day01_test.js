@@ -5,7 +5,7 @@ const assert = require('assert');
 describe('2023 - 01', () => {
 
   describe('firstStar', () => {
-    let input = fs.readFileSync('./test/data/2023/day01', 'utf8').split('\n');
+    let input = fs.readFileSync('./test/data/2023/day01-1', 'utf8').split('\n');
 
     it(' should summarize calibration values', () => {
       assert.strictEqual(sut.runOne(input), 142);
