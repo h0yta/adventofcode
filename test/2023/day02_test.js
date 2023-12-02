@@ -7,8 +7,8 @@ describe('2023 - 02', () => {
   describe('firstStar', () => {
     let input = fs.readFileSync('./test/data/2023/day02-1', 'utf8').split('\n');
 
-    it('ototot should ...', () => {
-      assert.strictEqual(sut.runOne(input), 0);
+    it(' should sumarixe the IDs of all games within limits', () => {
+      assert.strictEqual(sut.runOne(input), 8);
     });
 
   });
@@ -16,8 +16,8 @@ describe('2023 - 02', () => {
   describe('secondStar', () => {
     let input = fs.readFileSync('./test/data/2023/day02-2', 'utf8').split('\n');
 
-    it(' should ...', () => {
-      assert.strictEqual(sut.runTwo(input), 0);
+    it(' should sumarize the power of all games ', () => {
+      assert.strictEqual(sut.runTwo(input), 2286);
     });
 
   });
