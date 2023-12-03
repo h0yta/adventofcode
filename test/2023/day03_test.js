@@ -7,7 +7,7 @@ describe('2023 - 03', () => {
   describe('firstStar', () => {
     let input = fs.readFileSync('./test/data/2023/day03-1', 'utf8').split('\n');
 
-    it(' should ...', () => {
+    it(' should summarize engine part numbers', () => {
       assert.strictEqual(sut.runOne(input), 4361);
     });
 
@@ -16,7 +16,7 @@ describe('2023 - 03', () => {
   describe('secondStar', () => {
     let input = fs.readFileSync('./test/data/2023/day03-2', 'utf8').split('\n');
 
-    it(' ototot should ...', () => {
+    it(' should summarize all gear ratios', () => {
       assert.strictEqual(sut.runTwo(input), 467835);
     });
 

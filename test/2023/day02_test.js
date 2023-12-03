@@ -16,7 +16,7 @@ describe('2023 - 02', () => {
   describe('secondStar', () => {
     let input = fs.readFileSync('./test/data/2023/day02-2', 'utf8').split('\n');
 
-    it(' should sumarize the power of all games ', () => {
+    it(' should summarize the power of all games ', () => {
       assert.strictEqual(sut.runTwo(input), 2286);
     });
 
