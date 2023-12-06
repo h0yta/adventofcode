@@ -13,6 +13,23 @@ const firstStar = (input) => {
   return minLocation;
 }
 
+const secondStarOld = (input) => {
+  let maps = parseInput(input);
+  let minLocation = Number.MAX_SAFE_INTEGER;
+  let sortedRanges = getSortedRanges(maps.seeds);
+
+  for (let range = 0; range < sortedRanges.length; range++) {
+    for (let seed = sortedRanges[range].start; seed < sortedRanges[range].end; seed++) {
+      let location = getLocation(maps.maps, seed);
+      if (location < minLocation) {
+        minLocation = location;
+      }
+    }
+  }
+
+  return minLocation;
+}
+
 const secondStar = (input) => {
   let maps = parseInput(input);
   let minLocation = Number.MAX_SAFE_INTEGER;
