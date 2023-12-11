@@ -5,14 +5,14 @@ const firstStar = (input) => {
     .map(row => row.split(''));
   let mappedInput = transformToPipes(input);
 
-  return traverse(mappedInput.pipes, mappedInput.start, { y: -10, x: -10 })
+  return findPipesLength(mappedInput.pipes, mappedInput.start, { y: -10, x: -10 })
     / 2;
 }
 
-const traverse = (pipes, start, last) => {
-  let depth = 0;
-  while (pipes[start.y][start.x].type != 'S' || depth === 0) {
-    depth++;
+const findPipesLength = (pipes, start, last) => {
+  let length = 0;
+  while (pipes[start.y][start.x].type != 'S' || length === 0) {
+    length++;
     let alt = pipes[start.y][start.x].directions
       .filter(dir => dir.y !== last.y || dir.x !== last.x)
       .pop();
@@ -20,34 +20,42 @@ const traverse = (pipes, start, last) => {
     last = start;
     start = alt;
   }
-  return depth;
+  return length;
 }
 
 const secondStar = (input) => {
   input = input
     .map(row => row.split(''));
   let mappedInput = transformToPipes(input);
-  let output = createOutput(mappedInput.pipes, mappedInput.start, { y: -10, x: -10 });
+  let map = createPipeMap(mappedInput.pipes, mappedInput.start, { y: -10, x: -10 });
 
-  for (let y = 0; y < output.length; y++) {
-    let row = output[y].join('');
-    let no = row.match(/^0+/);
-    row = row.replace(/^0+/, new Array(no).fill(' ').join(''));
-    no = row.match(/0+$/);
-    row = row.replace(/0+$/, new Array(no).fill(' ').join(''));
-    console.log(row)
+  for (let y = 0; y < map.length; y++) {
+    let hits = 0;
+    for (let x = 0; x < map[y].length; x++) {
+      if (map[y][x] === '|' || map[y][x] === 'L' || map[y][x] === 'J') {
+        hits++;
+      }
+
+      if (hits % 2 === 1 && map[y][x] === '.') {
+        map[y][x] = '*';
+      }
+    }
   }
+
+  return map
+    .map(row => row.filter(col => col === '*').length)
+    .reduce((a, b) => a + b);
 }
 
-const createOutput = (pipes, start, last) => {
+const createPipeMap = (pipes, start, last) => {
   let depth = 0;
   let output = Array(pipes.length + 1)
-    .fill(0)
-    .map(() => Array(pipes[0].length + 1).fill(0));
+    .fill('.')
+    .map(() => Array(pipes[0].length + 1).fill('.'));
 
   while (pipes[start.y][start.x].type != 'S' || depth === 0) {
     depth++;
-    output[start.y][start.x] = pipes[start.y][start.x].type !== '|' && pipes[start.y][start.x].type !== '-' ? 'X' : pipes[start.y][start.x].type;
+    output[start.y][start.x] = pipes[start.y][start.x].type;
     let alt = pipes[start.y][start.x].directions
       .filter(dir => dir.y !== last.y || dir.x !== last.x)
       .pop();
@@ -74,14 +82,6 @@ const transformToPipes = (input) => {
 }
 
 const getDirections = (y, x, type) => {
-  // | is a vertical pipe connecting north and south.
-  // - is a horizontal pipe connecting east and west.
-  // L is a 90-degree bend connecting north and east.
-  // J is a 90-degree bend connecting north and west.
-  // 7 is a 90-degree bend connecting south and west.
-  // F is a 90-degree bend connecting south and east.
-  // . is ground; there is no pipe in this tile.
-  // S is the starting position of the animal; there is a pipe on this tile, but your sketch doesn't show what shape the pipe has.
   if (type === '|') {
     return [{ y: y - 1, x }, { y: y + 1, x }];
   } else if (type === '-') {
@@ -114,10 +114,6 @@ const findStartPos = (pipes) => {
     .flatMap(pipe => pipe)
     .filter(pipe => pipe.type === 'S')
     .pop();
-}
-
-const connectToPos = (pipe, pos) => {
-
 }
 
 exports.run = () => {
