@@ -7,7 +7,7 @@ describe('2023 - 10', () => {
   describe('firstStar', () => {
     let input1 = fs.readFileSync('./test/data/2023/day10-1-1', 'utf8').split('\n');
 
-    it('ototot should ...', () => {
+    it(' should ...', () => {
       assert.strictEqual(sut.runOne(input1), 4);
     });
 
