@@ -7,7 +7,7 @@ describe('2023 - 14', () => {
   describe('firstStar', () => {
     let input = fs.readFileSync('./test/data/2023/day14-1', 'utf8').split('\n');
 
-    it('ototot should ...', () => {
+    it(' should ...', () => {
       assert.strictEqual(sut.runOne(input), 136);
     });
 
@@ -16,8 +16,8 @@ describe('2023 - 14', () => {
   describe('secondStar', () => {
     let input = fs.readFileSync('./test/data/2023/day14-2', 'utf8').split('\n');
 
-    it(' should ...', () => {
-      assert.strictEqual(sut.runTwo(input), 0);
+    it(' ototot should ...', () => {
+      assert.strictEqual(sut.runTwo(input), 64);
     });
 
   });
