@@ -2,51 +2,110 @@ const utils = require('../util/fileUtil');
 
 const firstStar = (input) => {
   let maxPoint = input.length;
-  input = flip(input.map(row => row.split('')));
-
-  let dish = flip(input.map(row => row
-    .join('')
-    .split('#')
-    .map(part => part
-      .split('')
-      .sort((a, b) => a === b ? 0 : a === 'O' ? -1 : 1)
-      .join('')
-    )
-    .join('#')));
-
-  printDish(dish);
-
+  let dish = input.map(row => row.split(''));
+  dish = tilt(dish, 'north');
   return calculateTotalLoad(dish, maxPoint);
 }
 
-const secondStar = (input) => {
-  let maxPoint = input.length;
+const tilt = (dish, dir) => {
+  if (dir === 'north' || dir == 'south') {
+    return flip(
+      flip(dish)
+        .map(row => row
+          .join('')
+          .split('#')
+          .map(part => part
+            .split('')
+            .sort((a, b) => sort(a, b, dir))
+            .join('')
+          )
+          .join('#')
+          .split('')));
+  } else {
+    return dish.map(row => row
+      .join('')
+      .split('#')
+      .map(part => part
+        .split('')
+        .sort((a, b) => sort(a, b, dir))
+        .join('')
+      )
+      .join('#')
+      .split(''))
+  }
+}
 
-  let dish = input.map(row => row.split(''));
+const sort = (a, b, dir) => {
+  if (dir === 'north' || dir === 'west') {
+    return a === b ? 0 : a === 'O' ? -1 : 1;
+  } else {
+    return a === b ? 0 : a === 'O' ? 1 : -1;
+  }
+}
+
+const secondStar = (input) => {
+  let cache = new Array();
+  let done = false;
+  let dish = input.map(row => row.split('').filter(x => x.trim() !== ''));
   // 1000000000 / 37 = 27027027,02702703 = 999999999
   // 25 37 37
-  for (let i = 0; i < 100000; i++) {
-    for (let j = 0; j < 4; j++) {
-      dish = rotateForward(dish)
-      let hej = calculateTotalLoad(dish, dish.length);
-      if (hej === 64) console.log(i, hej);
+  for (let i = 1; i < 1000000000; i++) {
+    //dish.forEach(row => console.log(row));
+    //console.log('');
 
-      dish = dish.map(row => row
-        .join('')
-        .split('#')
-        .map(part => part
-          .split('')
-          .sort((a, b) => a === b ? 0 : a === 'O' ? -1 : 1)
-          .join('')
-        )
-        .join('#')
-        .split(''));
+    dish = tilt(dish, 'north');
+    //dish.forEach(row => console.log(row.join('')));
+    //console.log('');
+    dish = tilt(dish, 'west');
+    //dish.forEach(row => console.log(row.join('')));
+    //console.log('');
+    dish = tilt(dish, 'south');
+    //dish.forEach(row => console.log(row.join('')));
+    //console.log('');
+    dish = tilt(dish, 'east');
+    //dish.forEach(row => console.log(row.join('')));
+    //console.log('');
+
+
+    let hej = calculateTotalLoad(dish, dish.length);
+    console.log(i, hej);
+
+    if (containsInCache(cache, dish) > -1 && !done) {
+      done = true;
+      let index = containsInCache(cache, dish);
+      console.log('index', containsInCache(cache, dish))
+      console.log('mod', (1000000000 % (i - index)))
+      console.log('i', i)
+
+
+
+      i = 1000000000 - (index + (1000000000 - index) % (i - index)) - 2;
+      console.log('i', i)
+
+    } else if (!done) {
+      addToCache(cache, dish);
     }
   }
 
-  dish = rotateForward(dish)
+  // 91270 TOO LOW
+  // 91270
 
-  return calculateTotalLoad(dish, maxPoint);
+  return calculateTotalLoad(dish, dish.length);
+}
+
+const containsInCache = (cache, dish) => {
+  let hash = createHash(dish);
+  return cache.indexOf(hash);
+}
+
+const addToCache = (cache, dish) => {
+  let hash = createHash(dish);
+  cache.push(hash);
+  return cache;
+}
+
+const createHash = (dish) => {
+  return dish.map(row => row.join('')).join('@');
 }
 
 const flip = (dish) => {
@@ -59,17 +118,6 @@ const flip = (dish) => {
   }
 
   return copy;
-}
-
-const rotateForward = function (dish) {
-  return dish[0].map((val, index) => dish.map(row => row[index]).reverse());
-}
-
-const rotateBackward = function (arr, no) {
-  while (no-- > 0) {
-    arr.unshift(arr.pop())
-  }
-  return arr
 }
 
 const calculateTotalLoad = (dish, maxPoint) => {
